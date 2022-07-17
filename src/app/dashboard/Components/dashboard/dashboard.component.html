@@ -1,0 +1,28 @@
+
+<div class="d-flex flex-row-reverse">
+    <button  *ngIf="!isStarted && !isTokenValid()" class="btn btn-info position-absolute top-25  mt-1 ms-2 " (click)="startTime()">اومدم</button>
+    <div class=" position-absolute top-25 mt-1 ms-2 ">
+    <div *ngIf="showTime==true" class="btn btn-light btn-sm">{{time}}</div>
+    <button (mouseover)="showTime=true" (mouseout)="showTime=false"  *ngIf=" isStarted && !isTokenValid()" class="btn btn-danger"(click)="endTime()">دارم میرم!</button>
+  </div>
+</div>
+<h2 class="m-4">داشبورد</h2>
+
+<div *ngIf="dashboardService.resDashboard">
+  <div class="col-12 d-flex justify-content-between">
+    <div class="col-4 bg bg-white p-0 rounded">
+        <app-filter-date (filterDate)="filterDate($event)"></app-filter-date>
+      </div>
+      <div class="col-8 bg bg-white p-0 rounded mx-2">
+        <app-user-info></app-user-info>
+      </div>
+    </div>
+    
+    <div class="mb-5 p-0 mt-2">
+      <app-charts></app-charts>
+      </div>
+    <div class="col-12 bg bg-white p-0 mt-3 mx-3 rounded">
+    <app-user-function (queryEmit)="query($event)"></app-user-function>
+    </div>
+    
+</div>

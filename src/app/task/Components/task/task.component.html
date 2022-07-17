@@ -1,0 +1,40 @@
+<div class="d-flex justify-content-between align-items-center border rounded p-3 mb-2">
+    <div class="col-6 d-flex justify-content-between"
+    (click)="collapse.toggle()" 
+    [attr.aria-expanded]="!isShowed"
+    aria-controls="collapseExample"
+    >
+    <div
+    type="button"
+    class="d-flex flex-column">
+    <div>{{task.text}}</div>
+</div>
+    <div *ngIf="task.type==1" class="btn btn-outline-secondary fa fa-home ">
+    </div>
+    <button
+    class="btn btn-sm me-5"
+    [ngClass]="{'btn-success': task.isConfirmed, ' btn-warning':  ! task.isConfirmed } ">
+    {{task.isConfirmed ? 'تایید شده': 'درحال بررسی'}}
+</button>
+</div>
+    <div>
+        {{regDate}}
+    </div>
+    <div class="d-flex">
+        <input
+        class="btn btn-outline-secondary"
+        type="button"
+        value="{{time}}">
+        
+        <button class="btn btn-outline-secondary fa fa-edit me-1" (click)="onEdit()"></button>
+        <button class="btn btn-outline-secondary fa fa-trash" (click)="onDelete(task.id)"></button>
+    </div>
+</div>
+<div #collapse="ngbCollapse" 
+    [(ngbCollapse)]="isShowed"
+    >
+    <div class="card-body">
+        {{task.description}}
+    </div>
+</div>
+

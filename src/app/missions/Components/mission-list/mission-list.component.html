@@ -1,0 +1,28 @@
+<div class="d-flex justify-content-between align-items-center border rounded p-3 mb-2 link-secondary">
+<div class="col-6 d-flex justify-content-between">
+    <div 
+    (click)="collapse.toggle()" 
+    [attr.aria-expanded]="!isShowed"
+    aria-controls="collapseExample"
+    type="button">{{userMissions.title}}</div>
+    <div class="btn btn-sm me-5"
+    [ngClass]="{'btn-success': userMissions.isConfirmed, ' btn-warning':  ! userMissions.isConfirmed } "
+    >{{userMissions.isConfirmed ? 'تایید شده': 'درحال بررسی'}}
+    </div>
+</div>
+    <div class="col-2">
+        {{regDate}}
+    </div>
+    <div class="d-flex">
+        <button class="btn btn-outline-secondary fa fa-edit me-1" (click)="onEdit()"></button>
+        <button class="btn btn-outline-secondary fa fa-trash" (click)="onDelete(userMissions.id)"></button>
+    </div>
+</div>
+<div #collapse="ngbCollapse" 
+    [(ngbCollapse)]="isShowed"
+    >
+    <div class="card-body">
+        {{userMissions.description}}
+    </div>
+</div>
+

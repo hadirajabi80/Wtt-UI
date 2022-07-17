@@ -1,0 +1,51 @@
+body {
+    direction: rtl;
+    text-align: right;
+    font-family: Vazir;
+    font-weight: 300;
+    color: #5a5a5a;
+}
+
+#sidebar {
+    height: 100%;
+}
+
+#sidebar.collapsing {
+    height: 0;
+}
+
+@media (min-width : 768px) {
+    #sidebar {
+        height: calc( 100vh - 62px) !important;
+        position: fixed;
+        transition: transform .5s linear;        
+    } 
+    #sidebar.collapse {
+        transform: translate(100% , 0);
+    }
+    #sidebar.collapse.show {
+        transform: translate(0 , 0);
+    }
+    #sidebar.collapsing {
+        transform : translate(100% , 0);
+    }
+    #main {
+        transition: .5s all;
+    }
+}
+
+#sidebar .nav-link {
+    color: #f8f9fa;
+}
+
+#sidebar .oi {
+    transition: .3s transform ease-in-out;
+}
+
+#sidebar .oi-chevron-left {
+    transform: rotate(-90deg);
+}
+
+#sidebar .collapsed .oi-chevron-left {
+    transform: rotate(0deg);
+}

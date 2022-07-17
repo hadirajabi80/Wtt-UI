@@ -1,0 +1,23 @@
+<div class="col-12 d-flex justify-content-between">
+  <div class="col-4 bg bg-white p-0 rounded d-flex align-items-center justify-content-center align-content-center">
+    <div class="w-75">
+    <canvas baseChart
+    [data]="dashboardService.resDashboard.pieChart"
+    [type]="'pie'"
+    
+    >
+  </canvas>
+</div>
+  </div>
+  <div class="col-8 bg bg-white rounded p-0 mx-2 d-flex align-items-center justify-content-center align-content-center">
+    <div style="width:90% ;">
+  <canvas baseChart 
+          [data]="dashboardService.resDashboard.barChart" 
+          [type]="'bar'"
+          [options]="chartOptions"
+          [scrollTop]="20"
+          >
+  </canvas>
+</div>
+</div>
+</div>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="/assets/style/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/assets/style/css/bootstrap-rtl.css" />
+    <link rel="stylesheet" href="/assets/style/css/vazir.css" />
+    <link rel="stylesheet" href="/assets/style/css/style.css" />
+  </head>
+
+  <body class="d-flex p-0 " style="overflow-x: hidden ;max-height: 100vh ;">
+      <div class="d-flex flex-column col-2" style="max-height: 100vm ;">
+
+        <div class="py-3 mr-2 d-flex justify-content-center ">
+          <img
+            src="https://wtt.sanayco.ir/assets/media/logo/logo.png"
+            alt=""
+            width="90px"
+            height="48px"
+          />
+        </div>
+        <ul class="flex-column px-3">
+          <li class="btn btn-outline-secondary btn-sm border-0 d-flex align-items-center"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }">
+            <span class="fa fa-dashboard"></span>
+            <a
+              href="#"
+              class="nav-link my-1 text-dark w-100 text-right "
+              [routerLink]="['/dashboard']"
+
+              >داشبورد</a
+            >
+          </li>
+          <!-- <li class="nav-item"> -->
+          <!-- <div class="d-flex align-items-center">
+                            <span class="oi oi-book"></span>
+                            <a href="#" class="nav-link my-1 w-100 collapsed" data-toggle="collapse" data-target="#submenu1">
+                                مقالات
+                                <span class="oi oi-chevron-left float-left"></span>
+                            </a>
+                        </div> -->
+          <!-- <div class="collapse" id="submenu1">
+                            <ul class="nav px-3">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link my-1">مشاهده همه</a>
+                                </li>
+                                <li class="nav-item w-100">
+                                    <a href="#" class="nav-link my-1 w-100 collapsed" data-toggle="collapse" data-target="#submenu1sub1">
+                                        ارسال مقاله
+                                        <span class="oi oi-chevron-left float-left"></span>
+                                    </a>
+                                    <div class="collapse" id="submenu1sub1">
+                                        <ul class="nav px-3">
+                                            <li class="nav-item">
+                                                <a href="#" class="nav-link my-1">مقاله کوتاه</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#" class="nav-link my-1">مقاله بلند</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li> -->
+          <li class="btn btn-outline-secondary border-0 btn-sm d-flex align-items-center"
+          routerLinkActive="active">
+            <span class="fa fa-user"></span>
+            <a
+              href="#"
+              class="nav-link my-1 text-dark w-100 text-right"
+              [routerLink]="['/presence']"
+
+              >حضور</a
+            >
+          </li>
+          <li class="btn btn-outline-secondary btn-sm border-0 d-flex align-items-center"routerLinkActive="active"
+          >
+            <span class="fa fa-tasks"></span>
+            <a
+              href="#"
+              class="nav-link my-1 text-dark w-100 text-right"
+              [routerLink]="['/task']"
+              >وظایف</a
+            >
+          </li>
+          <li class="btn btn-outline-secondary btn-sm border-0 d-flex align-items-center"
+          routerLinkActive="active"
+          >
+            <span class="fa fa-suitcase"></span>
+            <a href="#" 
+            class="nav-link my-1 text-dark w-100 text-right"
+            [routerLink]="['/mission']"
+              >ماموریت</a
+            >
+          </li>
+          <li class="btn btn-outline-secondary btn-sm border-0 d-flex align-items-center"
+          routerLinkActive="active"
+          >
+            <span class="fa fa-bed"></span>
+            <a href="#" 
+            class="nav-link my-1 text-dark w-100 text-right"
+            [routerLink]="['/vacation']"
+              >مرخصی</a
+            >
+          </li>
+          <li class="btn btn-outline-secondary btn-sm border-0 d-flex align-items-center">
+            <span class="fa fa-user"></span>
+            <a href="#" class="nav-link my-1 text-dark w-100 text-right"
+              >کاربران</a
+            >
+          </li>
+          <li class="btn btn-outline-secondary btn-sm border-0 d-flex align-items-center">
+            <span class="fa fa-product-hunt"></span>
+            <a href="#" class="nav-link my-1 text-dark w-100 text-right"
+              >پروژه ها</a
+            >
+          </li>
+          <li class="btn btn-outline-secondary btn-sm border-0 d-flex align-items-center"
+          routerLinkActive="active"
+          >
+            <span class="fa fa-file"></span>
+            <a href="#" class="nav-link my-1 text-dark w-100 text-right"
+            [routerLink]="['/report']"
+              >گزارش ها</a
+            >
+          </li>
+          <li class="btn btn-outline-secondary btn-sm border-0 d-flex align-items-center">
+            <span class="fa fa-coffee"></span>
+            <a href="#" class="nav-link my-1 text-dark w-100 text-right"
+              >مدیریت ناهار</a
+            >
+          </li>
+        </ul>
+        <div class="row mt-auto">
+          <i
+            class="btn btn-danger fa fa-sign-out"
+            (click)="onExit()"></i>
+        </div>
+      </div>
+
+    <div class="col-10 bg-light" style="overflow-x: hidden ; overflow-y:scroll ; min-height: 100vh;">
+      <router-outlet></router-outlet>
+    </div>
+  </body>
+</html>

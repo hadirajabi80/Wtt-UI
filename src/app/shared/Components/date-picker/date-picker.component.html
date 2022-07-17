@@ -1,0 +1,15 @@
+<dp-date-picker #dpDatePicker (close)="onCloseDatePicker()" [ngStyle]="{width: size.width, height: size.height}"
+  [disabled]="disabled" (ngModelChange)="updateValue($event)" [(ngModel)]="_date" [mode]="mode"
+  [config]="datePickerConfig" [theme]="'dp-material'" [placeholder]="plholder">
+</dp-date-picker>
+<!-- 
+<input
+  class="form-control"
+  placeholder="yyyy-mm-dd"
+  name="dp"
+  [dpDayPicker]="datePickerConfig"
+  dir="rtl"
+  [(ngModel)]="_date"
+  (ngModelChange)="updateValue($event)"
+  theme="dp-material"
+  mode="day"/> -->

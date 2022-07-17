@@ -1,0 +1,91 @@
+<div class="d-flex align-items-center">
+<div
+ class="text text-secondary p-3">جزئیات (مدت زمان کار مورد انتظار: {{dashboardService.resDashboard.workDays}} )
+</div>
+<div class="text-light mx-4 p-1 small bg bg-danger rounded">
+  تعداد تعطیلات شرکتی: {{dashboardService.resDashboard.companyHoliday}}
+</div>
+<div class="text-light mx-4 p-1 small bg bg-danger rounded">
+تعداد تعطیلات جمعه: {{dashboardService.resDashboard.friday}}
+</div>
+<div class="text-light mx-4 p-1 small bg bg-danger rounded">
+  تعداد تعطیلات رسمی: {{dashboardService.resDashboard.holiday}}
+</div>
+</div>
+<div class="col-12 d-flex justify-content-between p-0">
+<div class="table col-7">
+  <table class="table mt-3">
+    <thead class="bg bg-light">
+      <tr class="small">
+        <th scope="col">نام و نام خانوادگی</th>
+        <th scope="col">مجموع حضور</th>
+        <th scope="col">مجموع زمان دورکاری	</th>
+        <th scope="col">مجموع زمان کار شخصی	</th>
+        <th scope="col">ماموریت (روز)</th>
+        <th scope="col">مرخصی (روز)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="dashboardService.resDashboard">
+        <td >{{dashboardService.resDashboard.userName}}</td>
+        <td>{{dashboardService.resDashboard.totalPresenceTime}}</td>
+        <td>{{dashboardService.resDashboard.taskRemote}}</td>
+        <td>{{dashboardService.resDashboard.personalWork}}</td>
+        <td>{{dashboardService.resDashboard.totalMissions}}</td>
+        <td>{{dashboardService.resDashboard.totalVacations}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="table col-5">
+  <table class="table mt-3">
+    <thead class="bg bg-light">
+      <tr class="small">
+        <th scope="col"> مجموع زمان کار </th>
+        <th scope="col">
+          مجموع زمان کار (روز)	
+        </th>
+        <th scope="col"> مجموع اضافه کاری </th>
+        <!-- <th scope="col"> تعداد نهار	</th> -->
+        <th scope="col"> مرخصی‌های ذخیره شده </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="dashboardService.resDashboard">
+        <td>{{dashboardService.resDashboard.totalTask}}</td>
+        <td>{{dashboardService.resDashboard.totalDay}}</td>
+        <td>{{dashboardService.resDashboard.overTime}}</td>
+        <!-- <td>{{dashboardService.resDashboard.totalTask}}</td> -->
+        <td>{{dashboardService.resDashboard.vacationSaved}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+<div class="col-3 mb-2 d-flex">
+<input type="text" 
+class="form-control"
+[(ngModel)]="query.searchKey"
+placeholder="جستجو کنید..."
+>
+<button class="btn btn-outline-info fa fa-search border" (click)="onSearch()"
+
+></button>
+</div>
+<div class="col-12">
+  <div class="mb-4" *ngFor="let task of taskService.tasks | paginate:{
+    itemsPerPage:query.pageSize,
+    currentPage:query.pageNumber,
+    totalItems:taskService.rowsCount
+  }">
+      <app-task class="bg bg-light" [task]="task" (editTask)="onEdit();"></app-task>
+
+   </div>
+   <pagination-controls
+   class="d-flex justify-content-center me-5"
+   previousLabel="قبلی"
+   nextLabel="بعدی"
+   (pageChange)="onChangeTable($event)"
+   >
+   </pagination-controls>
+  </div>

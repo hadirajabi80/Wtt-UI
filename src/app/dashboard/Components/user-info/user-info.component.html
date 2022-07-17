@@ -1,0 +1,37 @@
+<div *ngIf="dashboardService.resDashboard">
+  <div class="d-flex justify-content-between">
+    <div class="h5 p-3">{{dashboardService.resDashboard.userName}}</div>
+    <div class="h5 pt-3">پروژه ها:</div>
+    <div class="d-flex flex-column align-items-center">
+      <p class="h5 ps-5 pt-3">اضافه کاری</p>
+      <div
+      >{{ dashboardService.resDashboard.overTime }}</div>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="d-flex justify-content-between">
+    <div class="d-flex align-items-center pe-3">
+        <i class="text-secondary fa fa-calendar pe-2 fa-2x"></i>
+    <div class="d-flex flex-column align-items-center">
+        <p class="text-secondary small pt-3 m-0">مجموع حضور</p>
+        <div>{{dashboardService.resDashboard.totalPresenceTime}}</div>
+    </div>
+</div>
+    <div class="d-flex align-items-center">
+        <i class="text-secondary fa fa-check-circle fa-2x"></i>
+    <div class="d-flex flex-column align-items-center">
+        <p class="text-secondary small ps-1 pt-3 m-0">بازدهی کار در شرکت</p>
+        <div>{{dashboardService.resDashboard.efficiencyInCompany}}</div>
+    </div>
+</div>
+<div class="d-flex align-items-center ps-4">
+    <i class="text-secondary fa fa-archive fa-2x "></i>
+    <div class="d-flex flex-column align-items-center">
+        <p class="text-secondary small m-0 ps-1">بازدهی کل</p>
+        <div>{{dashboardService.resDashboard.efficiency}}</div>
+    </div>
+</div>
+  </div>
+</div>

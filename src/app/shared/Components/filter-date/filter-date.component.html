@@ -1,0 +1,83 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div>
+      <div class="mb-3 d-flex justify-content-between">
+        <div class="col-4 p-0">
+          <label>زمان شروع:</label>
+          <input
+            class="form-control"
+            placeholder="زمان شروع"
+            autocomplete="off"
+            name="dp"
+            [dpDayPicker]="datePickerConfig"
+            dir="rtl"
+            [(ngModel)]="startDate"
+            (onChange)="onUpdateStartTime($event)"
+            theme="dp-material"
+            mode="day"
+          />
+          <label class="pt-3">زمان پایان:</label>
+
+          <input
+            class="form-control"
+            autocomplete="off"
+            placeholder="زمان پایان"
+            name="dp"
+            [dpDayPicker]="datePickerConfig"
+            dir="rtl"
+            [(ngModel)]="endDate"
+            (onChange)="onUpdateEndTime($event)"
+            theme="dp-material"
+            mode="day"
+          />
+          <button class="btn btn-info mt-3" (click)="onShow();modal.close()">نمایش</button>
+        </div>
+        <div class="col-8 d-flex flex-column">
+          <div class="d-flex">
+            <button  class="btn btn-outline-secondary border-0 btn-block "  (click)="onFilter(filterType.CURRENT_MONTH_TODAY, this);modal.close()">ماه مالی جاری تا امروز</button>
+            <button class="btn btn-outline-secondary border-0 btn-block position: relative"  (click)="onFilter(filterType.TODAY, $event);modal.close()">امروز</button>
+          </div>
+          <div class="d-flex">
+            <button  class="btn btn-outline-secondary border-0 btn-block" (click)="onFilter(filterType.CURRENT_MONTH , $event);modal.close()">ماه مالی جاری</button>
+            <button class="btn btn-outline-secondary border-0 btn-block"  (click)="onFilter(filterType.YESTERDAY, $event);modal.close()">دیروز</button>
+          </div>
+          <div class="d-flex">
+            <button class="btn btn-outline-secondary border-0 btn-block"  (click)="onFilter(filterType.PASSED_MONTH, $event);modal.close()">ماه مالی گذشته</button>
+            <button class="btn btn-outline-secondary border-0 btn-block"  (click)="onFilter(filterType.CURRENT_WEEK, $event);modal.close()">هفته جاری</button>
+          </div>
+          <div class="d-flex">
+            <button  class="btn btn-outline-secondary border-0 btn-block"  (click)="onFilter(filterType.CURRENT_YEAR, $event);modal.close()">سال جاری</button>
+            <button class="btn btn-outline-secondary border-0 btn-block"  (click)="onFilter(filterType.PASSED_WEEK, $event);modal.close()">هفته گذشته</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div
+  class="col-10 mt-5 p-0 pb-5 px-3 d-flex flex-column align-content-center justify-content-center"
+>
+  <h6 class="mt-4 ms-4">فیلتر ها</h6>
+  <div>
+    <div>
+  <button
+    class="btn btn btn-outline-secondary border-0 col-12 mt-3 d-flex pe-5 align-items-center"
+    (click)="open(content)"
+  >
+    <i class="fa fa-calendar pe-2"> </i> بازه زمانی
+  </button>
+</div>
+  <div>
+    
+  </div>
+</div>
+</div>

@@ -1,0 +1,21 @@
+.dp-material ::ng-deep .dp-picker-input {
+    width: 100% !important;
+    border-radius: 4px;
+    border: 1px solid #ced4da !important;
+    padding: 10px !important;
+    color: #757575;
+  }
+  
+  .dp-material ::ng-deep .dp-current-location-btn {
+    display: none !important;
+  }
+  
+  ::ng-deep.dp-time-select-controls {
+    direction: ltr !important;
+  }
+  
+  .dp-material ::ng-deep .dp-picker-input {
+    text-align: left !important;
+    height: 38px;
+  }
+  

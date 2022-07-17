@@ -1,0 +1,43 @@
+<div class="d-flex flex-row-reverse">
+    <div class="col-12 position-relative">
+      <table class="table container mt-3">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">ورود</th>
+            <th scope="col">خروج</th>
+            <th scope="col">مدت زمان حضور</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let time of userLoginTimeService.times |paginate:{
+            itemsPerPage:pageSize,
+            currentPage:pageNumber,
+            totalItems:userLoginTimeService.rowsCount
+          } let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ time.startTime * 1000 | date: "H:mm" }}</td>
+            <td *ngIf="time.endTime != null">
+              {{ time.endTime * 1000 | date: "H:mm" }}
+            </td>
+            <td *ngIf="time.endTime == null">{{ time.endTime }}</td>
+            <td *ngIf="time.timeDifference == null">{{ time.timeDifference }}</td>
+            <td *ngIf="time.timeDifference != null">{{ time.timeDifference * 1000 | date: "HH:mm":"UTC" }}</td>
+            <td>{{time.date | jalali }}</td>
+            <td>
+                <button class="btn btn-outline-secondary fa fa-edit me-1" (click)="onEdit(time)"></button>
+                <button class="btn btn-outline-secondary fa fa-trash" (click)="onDelete(time.id)"></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls
+      class="d-flex justify-content-center me-5"
+      previousLabel="قبلی"
+      nextLabel="بعدی"
+      (pageChange)="onChangeTable($event)"
+      >
+      </pagination-controls>
+    </div>
+  </div>
+  

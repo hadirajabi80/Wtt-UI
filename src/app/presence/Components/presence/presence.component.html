@@ -1,0 +1,87 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{editStatus ? 'ویرایش حضور': 'افزودن حضور'}}</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div class="mb-3">
+      <label>تاریخ</label>
+      <div>
+        <div class="d-flex justify-content-between mb-2">
+          <input
+            class="form-control"
+            autocomplete="off"
+            placeholder="yyyy-mm-dd"
+            name="dp"
+            [dpDayPicker]="datePickerConfig"
+            dir="rtl"
+            [(ngModel)]="dateObject"
+            (onChange)="onUpdate($event)"
+            theme="dp-material"
+            mode="day"
+          />
+          <button
+            class="btn btn-outline-secondary fa fa-calendar"
+            type="button"
+          ></button>
+        </div>
+        <div class="d-flex justify-content-between">
+          <input
+            class="form-control"
+            autocomplete="off"
+            placeholder="ورود"
+            name="dp"
+            [dpDayPicker]="dateTimeConfig"
+            dir="rtl"
+            [(ngModel)]="dateTimeStart"
+            theme="dp-material"
+            mode="time"
+          />
+          <input
+            class="form-control"
+            autocomplete="off"
+            placeholder="خروج"
+            name="dp"
+            [dpDayPicker]="dateTimeConfig"
+            dir="rtl"
+            [(ngModel)]="dateTimeEnd  "
+            theme="dp-material"
+            mode="time"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="onSave();"
+    >
+    {{editStatus ? 'ویرایش': 'افزودن'}}
+    </button>
+  </div>
+</ng-template>
+<h2 class="m-4">حضور</h2>
+<div class="col-12 d-flex justify-content-between">
+  <div class="col-4">
+    <div class="col-12 p-0">
+      <button
+        class="btn btn-info col-12 mt-3 d-flex justify-content-center align-items-center"
+        (click)="open(content)">
+        <i class="fa fa-plus"></i> افزودن حضور
+      </button>
+    </div>
+    <div class="col-12 bg bg-white p-0">
+      <app-filter-date (filterDate)="filterDate($event)"></app-filter-date>
+    </div>
+  </div>
+  <div class="col-8">
+    <app-presence-list (dateType)="dateType" (editPresence)="onEdit($event , content)"></app-presence-list>
+  </div>
+</div>
