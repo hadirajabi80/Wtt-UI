@@ -24,7 +24,7 @@ export class TasksComponent implements OnInit {
   pageNumber:number=1;
   pageSize:number=10;
   searchKey: string = '';
-  dateType :any = {type:FilterType.CURRENT_MONTH};
+  dateType :any = {type:FilterType.CURRENT_MONTH_TODAY};
   description:string='';
   editStatus:boolean=false;
   userTask;

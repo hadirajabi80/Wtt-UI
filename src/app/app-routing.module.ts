@@ -32,7 +32,12 @@ const routes: Routes = [
       {
         path: 'report',
         loadChildren: () => import('./report/report.module').then(m => m.ReportModule)
+      },
+      {
+        path: 'admin',
+        loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
       }
+      
     ],
     canActivate: [AuthGuard]
   },

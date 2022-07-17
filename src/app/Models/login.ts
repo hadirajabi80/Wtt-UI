@@ -18,6 +18,9 @@ export class Users{
         public pageSize?:number,
         ){}
 }
+export class ResUser{
+    constructor(public rows:number , public users:Users[] ){}
+}
 export class ResPresence{
     constructor(public rows?:number , public userPresence?:LoginTime[] ){}
 }
