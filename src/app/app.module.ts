@@ -41,7 +41,8 @@ import { SharedModule } from './shared/shared.module';
     }),
     SharedModule,
     DpDatePickerModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    
     ],
   providers: [],
   bootstrap: [AppComponent]

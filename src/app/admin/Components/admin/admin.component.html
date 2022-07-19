@@ -1,0 +1,9 @@
+<h2 class="m-4">پنل ادمین</h2>
+<div class="col-12 d-flex justify-content-between align-content-center align-content-lg-center">
+  <div class="col-4">
+    <app-admin-add-user></app-admin-add-user>
+  </div>
+  <div class="col-8">
+    <app-admin-user-list  (editUser)="onEdit($event)"></app-admin-user-list>
+  </div>
+</div>

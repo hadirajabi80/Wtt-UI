@@ -10,7 +10,7 @@ import { TaskService } from 'src/app/Services/task.service';
 })
 export class UserFunctionComponent implements OnInit {
 
-  dateType :any = {type:FilterType.CURRENT_MONTH};
+  dateType :any = {type:FilterType.CURRENT_MONTH_TODAY};
 
 
   @Output() queryEmit = new EventEmitter<any>();
@@ -24,8 +24,6 @@ export class UserFunctionComponent implements OnInit {
     this.queryEmit.emit(this.query);
   }
   onEdit() {
-
-    
   }
   onSearch()
   {
@@ -35,6 +33,5 @@ export class UserFunctionComponent implements OnInit {
   {
     this.query.pageNumber=e;    
     this.taskService.getAll(this.query.searchKey ,this.query.pageNumber,this.query.pageSize,this.dateType);     
-    
   }
 }

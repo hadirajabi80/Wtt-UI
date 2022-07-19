@@ -33,7 +33,7 @@ export class DashboardService {
     const options = { params: new HttpParams(httpParams), headers: headers };    
     return this.http.get<ResDashboard>(this.taskUrl, options)    
     .subscribe((res) => {  
-      this.resDashboard=res;                 
+      this.resDashboard=res;
     });
   }
 }

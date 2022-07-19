@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContainerComponent } from './Components/container/container.component';
+import { AdminGuard } from './Services/admin.guard';
 import { AuthGuard } from './Services/auth.guard';
+import { UserService } from './Services/user.service';
 
 const routes: Routes = [
   {
@@ -35,7 +37,7 @@ const routes: Routes = [
       },
       {
         path: 'admin',
-        loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+        loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) , canActivate:[AdminGuard]
       }
       
     ],

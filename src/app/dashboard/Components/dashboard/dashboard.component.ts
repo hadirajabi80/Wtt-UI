@@ -33,10 +33,12 @@ export class DashboardComponent implements OnInit {
     this.userLoginTimeService.getUserLastStatus().subscribe((res) => {
       this.lastState = res;
       this.isStarted = this.lastState && this.lastState.endTime == null;
-      this.calcTime(res.startTime);
+      if(res.startTime !=null)
+      {
+        this.calcTime(res.startTime);
+      }
     });
     this.dashboardService.getAll(this.dateType);
-
     this.taskService.getAll(this.queryEmit.searchKey,this.queryEmit.pageNumber,this.queryEmit.pageSize ,this.dateType);
 
   }
@@ -64,7 +66,6 @@ export class DashboardComponent implements OnInit {
     this.dashboardService.getAll(this.dateType);
                     
   }
-
   calcTime(startTime: number) {
     this.elapsedTime(startTime);
     setInterval(() => {

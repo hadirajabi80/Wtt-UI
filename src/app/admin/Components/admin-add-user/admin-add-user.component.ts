@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { catchError, throwError } from 'rxjs';
 import { FilterType, Register } from 'src/app/Models/login';
 import { RoleService } from 'src/app/Services/role.service';
+import { UserParentService } from 'src/app/Services/user-parent.service';
 import { UserService } from 'src/app/Services/user.service';
 
 @Component({
@@ -28,12 +29,12 @@ export class AdminAddUserComponent implements OnInit {
     private modalService: NgbModal , 
     private toastr:ToastrService,
     public roleService : RoleService,
-    public userService : UserService
+    public userService : UserService,
     ) { }
 
   ngOnInit(): void {
     this.roleService.getRole();
-    this.userService.getAll(this.searchKey,this.pageNumber,this.pageSize)    
+    this.userService.getAll(this.searchKey,this.pageNumber,this.pageSize);
   }
 
   open(content) {
@@ -55,6 +56,10 @@ export class AdminAddUserComponent implements OnInit {
         {
           this.toastr.success('کاربر با موفقیت اضافه شد');
           this.modalService.dismissAll();
+          this.userName='';
+          this.fullName='';
+          this.email='';
+          this.roleId=0;
         }
         else
         {

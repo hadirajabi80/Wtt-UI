@@ -3,7 +3,13 @@ export class Login{
 
 }
 export class Register{
-    constructor(public fullName:string , public userName:string , public email:string , public password?:string ,public roleId?:number){}
+    constructor(public fullName:string ,
+         public userName:string ,
+          public email:string ,
+           public password?:string ,
+           public roleId?:number,
+           public parentId?:number
+           ){}
 }
 export class Users{
     constructor(public id?:number, 
@@ -167,6 +173,9 @@ export class TaskLocation
 export class Project
 {
     constructor(public name:string , public id:number){}
+}
+export class Parents{
+    constructor(public userId:number , public parentId:number){}
 }
 
 

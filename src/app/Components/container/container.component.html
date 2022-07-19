@@ -139,6 +139,15 @@
               >مدیریت ناهار</a
             >
           </li>
+          <li *ngIf="userService.roleId==1" class="btn btn-outline-secondary btn-sm border-0 d-flex align-items-center"
+          routerLinkActive="active"
+          >
+            <span class="fa fa-star"></span>
+            <a href="#" class="nav-link my-1 text-dark w-100 text-right"
+            [routerLink]="['/admin']"
+              >بخش ادمین</a
+            >
+          </li>
         </ul>
         <div class="row mt-auto">
           <i
