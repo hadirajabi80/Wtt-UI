@@ -39,7 +39,7 @@ export class TasksComponent implements OnInit {
 
   ngOnInit(): void {     
    this.taskService.getAll(this.searchKey,this.pageNumber,this.pageSize ,this.dateType);
-   this.projectService.getProjects();
+   this.projectService.getProjects();   
   }
 
 
@@ -144,18 +144,19 @@ export class TasksComponent implements OnInit {
           this.description='';
           this.text='';
           this.type=null;
-          this.project=null; 
+          this.project=null;
+          this.time="00:00"; 
         }
         else
         {
-          this.toastr.error("تاریخ وارد شده اشتباه می باشد");
+          this.toastr.error('پنجره زمانی نقض شده است.');
           return;
         }
       })
       }
   }
   errorHandler(err) { 
-    this.toastr.error('تاریخ وارد شده اشتباه می باشد');
+    this.toastr.error('پنجره زمانی نقض شده است.');
     return throwError(err);
   }
   onUpdate(e)

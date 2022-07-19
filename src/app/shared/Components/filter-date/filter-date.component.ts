@@ -17,6 +17,7 @@ export class FilterDateComponent implements OnInit {
   dateStarted;
   dateEnded;
   filterType=FilterType;
+  filterName:string= 'ماه مالی جاری تا امروز' ;
   @Output() filterDate = new EventEmitter<any>();
 
 
@@ -51,8 +52,9 @@ export class FilterDateComponent implements OnInit {
     var endDate= moment(e).locale('en').format('YYYY-MM-DD');
     this.dateEnded= endDate;
   }
-  onFilter(type,e)
-  {    
+  onFilter(type,val)
+  {
+    this.filterName=val;        
     this.filterDate.emit({type});
   }
 }
