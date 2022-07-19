@@ -1,36 +1,37 @@
 <div class="d-flex flex-row-reverse">
     <div class="col-12 position-relative">
-      <table class="table container mt-3">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">ورود</th>
-            <th scope="col">خروج</th>
-            <th scope="col">مدت زمان حضور</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let time of userLoginTimeService.times |paginate:{
-            itemsPerPage:pageSize,
-            currentPage:pageNumber,
-            totalItems:userLoginTimeService.rowsCount
-          } let i = index">
-            <th scope="row">{{ i + 1 }}</th>
-            <td>{{ time.startTime * 1000 | date: "H:mm" }}</td>
-            <td *ngIf="time.endTime != null">
-              {{ time.endTime * 1000 | date: "H:mm" }}
-            </td>
-            <td *ngIf="time.endTime == null">{{ time.endTime }}</td>
-            <td *ngIf="time.timeDifference == null">{{ time.timeDifference }}</td>
-            <td *ngIf="time.timeDifference != null">{{ time.timeDifference * 1000 | date: "HH:mm":"UTC" }}</td>
-            <td>{{time.date | jalali }}</td>
-            <td>
-                <button class="btn btn-outline-secondary fa fa-edit me-1" (click)="onEdit(time)"></button>
-                <button class="btn btn-outline-secondary fa fa-trash" (click)="onDelete(time.id)"></button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div *ngFor="let time of userLoginTimeService.times |paginate:{
+        itemsPerPage:pageSize,
+        currentPage:pageNumber,
+        totalItems:userLoginTimeService.rowsCount
+      } let i = index">
+      
+        <div class="d-flex justify-content-between align-items-center border rounded p-3 mb-2">
+          <div class="col-6 d-flex justify-content-between">
+          <div
+          type="button"
+          class="d-flex flex-column align-content-center align-items-center">
+          <div class="mb-3 btn btn-info btn-sm">زمان ورود</div>
+          <div>{{ time.startTime * 1000 | date: "H:mm" }}</div>
+      </div>
+      <div
+      type="button"
+      class="d-flex flex-column align-content-center align-items-center">
+      <div class="mb-3 btn btn-danger btn-sm">زمان خروج</div>
+      <div *ngIf="time.endTime == null">{{ time.endTime }}</div>
+      <div *ngIf="time.endTime != null">{{ time.endTime * 1000 | date: "H:mm" }}</div>
+      </div>
+      
+      </div>
+          <div>
+            {{time.date | jalali }}
+          </div>
+          <div class="d-flex">      
+              <button class="btn btn-outline-secondary fa fa-edit me-1" (click)="onEdit(time)"></button>
+              <button class="btn btn-outline-secondary fa fa-trash" (click)="onDelete(time.id)"></button>
+          </div>
+      </div>
+      </div>
       <pagination-controls
       class="d-flex justify-content-center me-5"
       previousLabel="قبلی"
@@ -40,4 +41,6 @@
       </pagination-controls>
     </div>
   </div>
+
+
   

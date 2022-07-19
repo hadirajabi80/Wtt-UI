@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChildren } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TaskService } from 'src/app/Services/task.service';
 import * as moment from 'jalali-moment';
@@ -29,7 +29,8 @@ export class TasksComponent implements OnInit {
   editStatus:boolean=false;
   userTask;
   type;
-  project;  
+  project;
+  task;    
   constructor(public taskService:TaskService ,
     private modalService: NgbModal , 
     private toastr:ToastrService,
@@ -39,7 +40,7 @@ export class TasksComponent implements OnInit {
 
   ngOnInit(): void {     
    this.taskService.getAll(this.searchKey,this.pageNumber,this.pageSize ,this.dateType);
-   this.projectService.getProjects();   
+   this.projectService.getProjects();
   }
 
 
@@ -48,7 +49,8 @@ export class TasksComponent implements OnInit {
     this.modalRef = this.modalService.open( content ,{size:'md' , centered:true , backdrop:false});
   }
   onEdit(task, content)
-  {   
+  {
+    this.task=task;  
     this.editStatus=true;
     this.userTask = this.taskService.tasks.find(p=>p.id == task.id);
     this.modalRef = this.modalService.open( content ,{size:'md' , centered:true , backdrop:false});

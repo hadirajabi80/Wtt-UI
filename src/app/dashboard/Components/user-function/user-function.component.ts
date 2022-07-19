@@ -12,8 +12,7 @@ export class UserFunctionComponent implements OnInit {
 
   dateType :any = {type:FilterType.CURRENT_MONTH};
 
-  @Input() task: UserTask;
-  @Output() editTask = new EventEmitter<any>();
+
   @Output() queryEmit = new EventEmitter<any>();
   query :any={pageNumber:1,
     pageSize:10,
@@ -22,11 +21,11 @@ export class UserFunctionComponent implements OnInit {
   constructor(public dashboardService: DashboardService ,public taskService:TaskService) {}
 
   ngOnInit(): void {
-    this.editTask.emit(this.task);
     this.queryEmit.emit(this.query);
   }
   onEdit() {
-    this.editTask.emit(this.task);
+
+    
   }
   onSearch()
   {

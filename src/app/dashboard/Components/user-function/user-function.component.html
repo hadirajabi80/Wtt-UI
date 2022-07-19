@@ -78,7 +78,7 @@ placeholder="جستجو کنید..."
     currentPage:query.pageNumber,
     totalItems:taskService.rowsCount
   }">
-      <app-task class="bg bg-light" [task]="task" (editTask)="onEdit();"></app-task>
+      <app-task class="bg bg-light" [task]="task" (editTaskDashboard)="onEdit();"></app-task>
 
    </div>
    <pagination-controls

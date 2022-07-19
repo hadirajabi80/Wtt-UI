@@ -50,7 +50,7 @@ export class AdminAddUserComponent implements OnInit {
     this.userService
       .addUser(registerObj)
       .pipe(catchError(err => this.errorHandler(err))) 
-      .subscribe((res) => {        
+      .subscribe((res) => {                
         if(res)
         {
           this.toastr.success('کاربر با موفقیت اضافه شد');
