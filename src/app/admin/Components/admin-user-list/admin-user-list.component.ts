@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
+import { catchError, throwError } from 'rxjs';
 import { Parents } from 'src/app/Models/login';
 import { UserParentService } from 'src/app/Services/user-parent.service';
 import { UserService } from 'src/app/Services/user.service';
@@ -18,7 +20,7 @@ export class AdminUserListComponent implements OnInit {
   modalRef : NgbModalRef;
   parentId:number=0;
   userId:number;
-  constructor(public userService:UserService,private modalService: NgbModal) { }
+  constructor(public userService:UserService,private modalService: NgbModal , public toastr:ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -33,8 +35,10 @@ export class AdminUserListComponent implements OnInit {
       this.pageSize,
     );
   }
-  onEdit(presence) {
-    this.editUser.emit(presence);
+  onEdit(user) {
+    console.log(user);
+    
+    this.editUser.emit(user);
   }
   onUser(id,content)
   {
@@ -51,9 +55,22 @@ export class AdminUserListComponent implements OnInit {
     let parentObj = new Parents(this.parentId,this.userId);
 
     this.userService.addUserParent(parentObj)
-    .subscribe((res)=>
-    {
-      console.log(res);
+    .pipe(catchError(err=>this.errorHandler(err)))
+    .subscribe((res)=>{
+      if(res)
+      {          
+        this.toastr.success("عملیات با موفقیت انجام شد")
+        this.modalService.dismissAll();
+        this.parentId=0;
+      }
+      else
+      {
+        this.toastr.error("کاربر قبلا به مدیر انتخابی اضافه شده است");
+      }
     })
+  }
+  errorHandler(err) { 
+    this.toastr.error("کاربر قبلا به مدیر انتخابی اضافه شده است");
+    return throwError(err);
   }
 }

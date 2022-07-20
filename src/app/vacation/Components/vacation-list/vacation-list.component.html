@@ -5,14 +5,21 @@
     aria-controls="collapseExample"
     type="button">{{regDate}}
 
-    <button
-        class="btn btn-sm me-5"
-        [ngClass]="{'btn-success': userVacation.isConfirmed, ' btn-warning':  ! userVacation.isConfirmed } ">
-        {{userVacation.isConfirmed ? 'تایید شده': 'درحال بررسی'}}
-    </button>
+    <div class="btn btn-sm me-5 btn-warning"
+    *ngIf="userVacation.confirmType==0">
+    در حال بررسی
+    </div>
+    <div class="btn btn-sm me-5 btn-success"
+    *ngIf="userVacation.confirmType==1">
+    تایید شده
+    </div>
+    <div class="btn btn-sm me-5 btn-danger"
+    *ngIf="userVacation.confirmType==2">
+    رد شده
+    </div>
 </div>
 
-    <div class="d-flex" *ngIf="!userVacation.isConfirmed">
+    <div class="d-flex" *ngIf="userVacation.confirmType == 0">
         <button class="btn btn-outline-secondary fa fa-edit me-1" (click)="onEdit()"></button>
         <button class="btn btn-outline-secondary fa fa-trash" (click)="onDelete(userVacation.id)"></button>
     </div>

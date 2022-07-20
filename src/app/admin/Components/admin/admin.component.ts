@@ -8,11 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class AdminComponent implements OnInit {
 
   constructor() { }
-
+  editUser;
   ngOnInit(): void {
   }
   onEdit(e)
   {
-    
+    this.editUser=e;    
   }
 }

@@ -46,7 +46,7 @@ export class UserTask{
         public description?:string,
         public timeWork?:number,
         public date?:Date,
-        public isConfirmed?:boolean,
+        public confirmType?:number,
         public type?: number,
         public searchKey?:string,
         public pageNumber?:number,
@@ -110,7 +110,7 @@ export class UserMission{
         public location?:string,
         public description?:string,
         public date?:Date,
-        public isConfirmed?:boolean,
+        public confirmType?:number,
         public searchKey?:string,
         public pageNumber?:number,
         public pageSize?:number,
@@ -125,7 +125,7 @@ export class UserVacation{
         public userId?:number ,
         public description?:string,
         public date?:Date,
-        public isConfirmed?:boolean,
+        public confirmType?:number,
         public searchKey?:string,
         public pageNumber?:number,
         public pageSize?:number,
@@ -175,7 +175,7 @@ export class Project
     constructor(public name:string , public id:number){}
 }
 export class Parents{
-    constructor(public userId:number , public parentId:number){}
+    constructor(public userId?:number , public parentId?:number){}
 }
 
 

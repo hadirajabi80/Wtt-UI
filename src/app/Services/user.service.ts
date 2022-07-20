@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams, HttpParamsOptions } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ResUser, Users } from '../Models/login';
+import { Parents, ResUser, Users } from '../Models/login';
 import jwt_decode from 'jwt-decode';
 
 @Injectable({
@@ -12,6 +12,7 @@ export class UserService {
   user: Users;
   rowsCount: number;
   roleId:number;
+  parent;
   readonly userUrl = 'https://localhost:7263/api/Users';
   readonly userParentUrl = 'https://localhost:7263/api/Users/UserParent';
   constructor(private http: HttpClient) {}
@@ -75,6 +76,8 @@ export class UserService {
         headers: { Authorization: 'bearer ' + token },
       })
       .subscribe((res) => {
+        console.log(res);
+        
         this.users[index] = users;
       });
   }

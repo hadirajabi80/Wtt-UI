@@ -11,11 +11,18 @@
 </div>
     <div *ngIf="task.type==1" class="btn btn-outline-secondary fa fa-home ">
     </div>
-    <button
-    class="btn btn-sm me-5"
-    [ngClass]="{'btn-success': task.isConfirmed, ' btn-warning':  ! task.isConfirmed } ">
-    {{task.isConfirmed ? 'تایید شده': 'درحال بررسی'}}
-</button>
+    <div class="btn btn-sm me-5 btn-warning"
+    *ngIf="task.confirmType==0">
+    در حال بررسی
+    </div>
+    <div class="btn btn-sm me-5 btn-success"
+    *ngIf="task.confirmType==1">
+    تایید شده
+    </div>
+    <div class="btn btn-sm me-5 btn-danger"
+    *ngIf="task.confirmType==2">
+    رد شده
+    </div>
 </div>
     <div>
         {{regDate}}
@@ -25,9 +32,10 @@
         class="btn btn-outline-secondary"
         type="button"
         value="{{time}}">
-        
+        <div class="d-flex" *ngIf="task.confirmType == 0">
         <button class="btn btn-outline-secondary fa fa-edit me-1" (click)="onEdit()"></button>
         <button class="btn btn-outline-secondary fa fa-trash" (click)="onDelete(task.id)"></button>
+        </div>
     </div>
 </div>
 <div #collapse="ngbCollapse" 

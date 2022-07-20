@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, throwError } from 'rxjs';
@@ -24,7 +24,6 @@ export class AdminAddUserComponent implements OnInit {
   pageNumber:number=1;
   pageSize:number=10;
   searchKey: string = '';
-
   constructor(    
     private modalService: NgbModal , 
     private toastr:ToastrService,
@@ -37,16 +36,17 @@ export class AdminAddUserComponent implements OnInit {
     this.userService.getAll(this.searchKey,this.pageNumber,this.pageSize);
   }
 
-  open(content) {
-
+  open(content) {    
     this.modalRef = this.modalService.open( content ,{size:'md' , centered:true , backdrop:false});
   }
   closeModal()
   {
-
+    this.userName='';
+    this.fullName='';
+    this.email='';
+    this.roleId=0;
   }
   onSave() {
-    
     let registerObj = new Register(this.fullName, this.userName, this.email, this.password, this.roleId);
     this.userService
       .addUser(registerObj)

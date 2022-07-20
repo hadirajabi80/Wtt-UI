@@ -12,6 +12,7 @@ export class MissionListComponent implements OnInit {
 
   searchKey:string='';
   regDate;
+  confirmType;
   @Input() userMissions:UserMission;
   @Output() editMission = new EventEmitter<any>();
 
