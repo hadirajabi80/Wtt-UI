@@ -12,8 +12,6 @@ export class RoleService {
   constructor(private http: HttpClient) { }
   getRole() {
     let token = localStorage.getItem('token');
-
-
     return this.http.get<Roles[]>(this.roleUrl, {headers: {Authorization: 'bearer ' + token,}}).subscribe((res) => {      
       this.roles = res;
     });

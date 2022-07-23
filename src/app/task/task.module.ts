@@ -9,12 +9,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DpDatePickerModule } from 'ng2-jalali-date-picker';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SharedModule } from '../shared/shared.module';
+import { AddTaskComponent } from './Components/add-task/add-task.component';
 
 
 @NgModule({
   declarations: [
     TaskComponent,
-    TasksComponent
+    TasksComponent,
+    AddTaskComponent
   ],
   imports: [
     FormsModule,
@@ -27,6 +29,6 @@ import { SharedModule } from '../shared/shared.module';
 
 
   ],
-  exports:[TaskComponent,TasksComponent]
+  exports:[TaskComponent,TasksComponent,AddTaskComponent]
 })
 export class TaskModule { }

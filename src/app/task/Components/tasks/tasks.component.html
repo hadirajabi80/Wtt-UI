@@ -1,131 +1,13 @@
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">
-      {{ editStatus ? "ویرایش وظیفه" : "افزودن وظیفه" }}
-    </h4>
-    <button
-      type="button"
-      class="btn-close"
-      aria-label="Close"
-      (click)="modal.dismiss('Cross click'); closeModal()"
-    ></button>
-  </div>
-  <div class="modal-body">
-    <div class="mb-3">
-      <label class="mt-3">عنوان وظیفه:</label>
-      <div>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="عنوان وظیفه"
-          [(ngModel)]="text"
-        />
-      </div>
-      <div class="d-flex justify-content-between mb-2">
-        <div class="col-6 ps-0 pe-2">
-          <label class="mt-3">پروژه:</label>
-          <select
-            class="form-select"
-            aria-label="Default select example"
-            [(ngModel)]="project"
-          >
-            <option
-              *ngFor="let project of projectService.project"
-              [value]="project.id"
-            >
-              {{ project.name }}
-            </option>
-          </select>
-        </div>
-        <div class="col-6 pe-0 ps-2">
-          <label class="mt-3">محل کار:</label>
-          <select
-            class="form-select"
-            aria-label="Default select example"
-            [(ngModel)]="type"
-          >
-            <option [value]="0">کار در شرکت</option>
-            <option [value]="1">دورکاری</option>
-          </select>
-        </div>
-      </div>
-      <div class="d-flex justify-content-between">
-      <div class="col-6 ps-0 pe-2">
-        <label>تاریخ:</label>
-          <div class="d-flex justify-content-between mb-2">
-            <input
-              class="form-control"
-              autocomplete="off"
-              placeholder="yyyy-mm-dd"
-              name="dp"
-              [dpDayPicker]="datePickerConfig"
-              dir="rtl"
-              [(ngModel)]="dateObject"
-              (onChange)="onUpdate($event)"
-              theme="dp-material"
-              mode="day"
-            />
-            <button class="fa fa-calendar btn btn-outline-secondary"></button>
-          </div>
-        </div>
-          <div class="col-6 pe-0 ps-2">
-          <label>مدت زمان پروژه (دقیقه):</label>
-          <div class="d-flex justify-content-between mb-2">
-            <input
-              autocomplete="off"
-              type="text"
-              class="form-control"
-              placeholder="مدت زمان پروژه"
-              [(ngModel)]="workTime"
-              (input)="onTime()"
-            />
-            <input
-              class="btn btn-outline-secondary"
-              autocomplete="off"
-              type="button"
-              value="{{ time }}"
-            />
-          </div>
-        </div>
-      </div>
-        <label class="mt-3">تشریح وظیفه:</label>
-        <div class="col-12 p-0">
-          <textarea
-            type="textarea"
-            class="form-control"
-            placeholder="تشریح وظیفه"
-            [(ngModel)]="description"
-          >
-          </textarea>
-        </div>
-
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="onSave()">
-      {{ editStatus ? "ویرایش وظیفه" : "افزودن وظیفه" }}
-    </button>
-  </div>
-</ng-template>
-<h2 class="m-4">وظایف</h2>
 <div class="col-12 d-flex justify-content-between">
   <div class="col-4">
-    <button
-      class="btn btn-info col-12 mt-3 d-flex justify-content-center align-items-center"
-      (click)="open(content)"
-    >
-      <i class="fa fa-plus"></i> افزودن وظیفه
-    </button>
-    <div class="col-12 bg bg-white p-0">
-      <app-filter-date (filterDate)="filterDate($event)"></app-filter-date>
-    </div>
-  </div>
+<app-add-task [editTask]="editTask"></app-add-task>
+</div>
   <div class="col-8">
     <main
       class="container d-flex flex-column align-items-center mt-3"
       role="main"
     >
-      <div class="col-12">
+      <div class="col-12 mt-5">
         <div
           *ngFor="
             let task of taskService.tasks
@@ -137,7 +19,7 @@
                   }">
           <app-task
             [task]="task"
-            (editTask)="onEdit($event, content)"
+            (editTask)="onEdit($event)"
           ></app-task>
         </div>
       </div>

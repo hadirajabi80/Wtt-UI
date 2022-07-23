@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import * as moment from 'jalali-moment';
 import { UserTask } from 'src/app/Models/login';
 import { TaskService } from 'src/app/Services/task.service';
@@ -12,6 +12,7 @@ export class TaskComponent implements OnInit {
   time;
   @Input() task: UserTask;
   @Output() editTask = new EventEmitter<any>();
+
   regDate;
   public isShowed = true;
 
@@ -31,7 +32,9 @@ export class TaskComponent implements OnInit {
       String(hour).padStart(2, '0') + ':' + String(min).padStart(2, '0');
     this.time = time;
   }
-  onEdit() {
-    this.editTask.emit(this.task);
+  onEdit() { 
+    let task=this.task;
+    let edit = true;   
+    this.editTask.emit({task,edit});    
   }
 }

@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams, HttpParamsOptions } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { ResTask, Tasks, Users, UserTask } from '../Models/login';
 
 @Injectable({
@@ -14,10 +15,17 @@ export class TaskService {
 
   readonly taskUrl = 'https://localhost:7263/api/UserTasks';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient , private router:Router) { }
 
   getAll(searchKey? , pageNumber?, pageSize? , date?) {
     let token = localStorage.getItem('token');
+    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+    let exp= parseInt(expiry);    
+    if(exp <= Math.floor(Date.now()/1000))
+    {
+      localStorage.clear();
+      this.router.navigate(['/login'])
+    } 
     const headers = new HttpHeaders().set('Authorization','bearer ' + token);    
     const myObject: any = { searchKey: searchKey, pageNumber: pageNumber, pageSize: pageSize ,type:date.type ,startDate:date.startDate,endDate:date.endDate};
     

@@ -78,8 +78,9 @@ placeholder="جستجو کنید..."
     currentPage:query.pageNumber,
     totalItems:taskService.rowsCount
   }">
-      <app-task class="bg bg-light" [task]="task" (editTaskDashboard)="onEdit();"></app-task>
-
+      <app-task class="bg bg-light" [task]="task"
+      (editTask)="onEdit($event)" 
+      ></app-task>
    </div>
    <pagination-controls
    class="d-flex justify-content-center me-5"
@@ -88,4 +89,7 @@ placeholder="جستجو کنید..."
    (pageChange)="onChangeTable($event)"
    >
    </pagination-controls>
+  </div>
+  <div hidden>
+    <app-add-task [editTask]="editTask"></app-add-task>
   </div>

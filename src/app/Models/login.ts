@@ -24,6 +24,17 @@ export class Users{
         public pageSize?:number,
         ){}
 }
+export class EditUser{
+    constructor(public id?:number, 
+        public fullName?:string , 
+        public userName?:string , 
+        public email?:string , 
+        public isActive?:boolean ,
+        public password?:string , 
+        public roleId?:number,
+
+        ){}
+}
 export class ResUser{
     constructor(public rows:number , public users:Users[] ){}
 }

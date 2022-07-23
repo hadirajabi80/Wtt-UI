@@ -31,7 +31,12 @@
           <div class="d-flex">      
               <button class="btn btn-outline-secondary fa fa-edit me-1" (click)="onEdit(user)"></button>
               <button class="btn btn-outline-secondary fa fa-trash me-1" (click)="onDelete(user.id)"></button>
-              <button class="btn btn-outline-secondary fa fa-user" (click)="onUser(user.id,content)"></button>
+              <button class="btn btn-outline-secondary fa fa-user me-1" (click)="onUser(user.id,content)"></button>
+              <button  class="btn btn-outline-secondary" 
+              [class.btn-outline-success]="user.isActive" [class.btn-outline-warning]="!user.isActive" (click)="onActive(user.id)">
+              {{ user.isActive ? "فعال" : "غیر فعال" }}
+            </button>
+
           </div>
       </div>
       </div>

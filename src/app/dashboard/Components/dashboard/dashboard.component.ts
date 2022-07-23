@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FilterType, LoginTime } from 'src/app/Models/login';
 import { DashboardService } from 'src/app/Services/dashboard.service';
+import { ProjectService } from 'src/app/Services/project.service';
 import { TaskService } from 'src/app/Services/task.service';
 import { UserLoginTimeService } from 'src/app/Services/user-login-time.service';
 
@@ -27,7 +28,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     public userLoginTimeService: UserLoginTimeService,
     public dashboardService:DashboardService,
-    public taskService:TaskService
+    public taskService:TaskService,
+    public projectService:ProjectService
   ) {}
   ngOnInit(): void {    
     this.userLoginTimeService.getUserLastStatus().subscribe((res) => {
@@ -37,6 +39,7 @@ export class DashboardComponent implements OnInit {
       {
         this.calcTime(res.startTime);
       }
+      this.projectService.getProjects();
     });
     this.dashboardService.getAll(this.dateType);
     this.taskService.getAll(this.queryEmit.searchKey,this.queryEmit.pageNumber,this.queryEmit.pageSize ,this.dateType);

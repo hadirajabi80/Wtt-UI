@@ -9,10 +9,11 @@ export class AdminComponent implements OnInit {
 
   constructor() { }
   editUser;
+  editStatus:boolean=false;
   ngOnInit(): void {
   }
   onEdit(e)
-  {
+  {        
     this.editUser=e;    
   }
 }

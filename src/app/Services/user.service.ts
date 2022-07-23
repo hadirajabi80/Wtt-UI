@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams, HttpParamsOptions } from '@angular
 import { Injectable } from '@angular/core';
 import { Parents, ResUser, Users } from '../Models/login';
 import jwt_decode from 'jwt-decode';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +16,18 @@ export class UserService {
   parent;
   readonly userUrl = 'https://localhost:7263/api/Users';
   readonly userParentUrl = 'https://localhost:7263/api/Users/UserParent';
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient , private router:Router) {}
 
   getAll(searchKey?, pageNumber?, pageSize?) {
 
     let token = localStorage.getItem('token');
+    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+    let exp= parseInt(expiry);    
+    if(exp <= Math.floor(Date.now()/1000))
+    {
+      localStorage.clear();
+      this.router.navigate(['/login'])
+    }   
     let decoded = jwt_decode(token);
     this.roleId = decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
     const headers = new HttpHeaders().set('Authorization','bearer ' + token);    
@@ -55,7 +63,6 @@ export class UserService {
 
   status(id) {
     let token = localStorage.getItem('token');
-
     let index = this.users.findIndex((user) => user.id == id);
 
     return this.http
@@ -70,15 +77,9 @@ export class UserService {
   }
   edit(users) {
     let token = localStorage.getItem('token');
-    let index = this.users.findIndex((user) => user.id == users.id);
     return this.http
       .put(this.userUrl + '/' + users.id, users, {
         headers: { Authorization: 'bearer ' + token },
-      })
-      .subscribe((res) => {
-        console.log(res);
-        
-        this.users[index] = users;
       });
   }
   addUser(registerObj) { 

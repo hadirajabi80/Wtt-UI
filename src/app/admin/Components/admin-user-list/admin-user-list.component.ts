@@ -36,15 +36,17 @@ export class AdminUserListComponent implements OnInit {
     );
   }
   onEdit(user) {
-    console.log(user);
-    
-    this.editUser.emit(user);
+    let edit=true;   
+    this.editUser.emit({user,edit});
   }
   onUser(id,content)
   {
     this.userId=id;
     this.modalRef = this.modalService.open( content ,{size:'md' , centered:true , backdrop:false});
 
+  }
+  onActive(id) {
+    return this.userService.status(id);
   }
   onSearch()
   {

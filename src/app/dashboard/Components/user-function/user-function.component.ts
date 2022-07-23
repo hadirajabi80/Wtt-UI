@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FilterType, UserTask } from 'src/app/Models/login';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FilterType } from 'src/app/Models/login';
 import { DashboardService } from 'src/app/Services/dashboard.service';
 import { TaskService } from 'src/app/Services/task.service';
 
@@ -10,9 +10,8 @@ import { TaskService } from 'src/app/Services/task.service';
 })
 export class UserFunctionComponent implements OnInit {
 
+  editTask;
   dateType :any = {type:FilterType.CURRENT_MONTH_TODAY};
-
-
   @Output() queryEmit = new EventEmitter<any>();
   query :any={pageNumber:1,
     pageSize:10,
@@ -20,10 +19,12 @@ export class UserFunctionComponent implements OnInit {
   }
   constructor(public dashboardService: DashboardService ,public taskService:TaskService) {}
 
+
   ngOnInit(): void {
     this.queryEmit.emit(this.query);
   }
-  onEdit() {
+  onEdit(e) {
+    this.editTask=e;       
   }
   onSearch()
   {
@@ -34,4 +35,5 @@ export class UserFunctionComponent implements OnInit {
     this.query.pageNumber=e;    
     this.taskService.getAll(this.query.searchKey ,this.query.pageNumber,this.query.pageSize,this.dateType);     
   }
+  
 }
