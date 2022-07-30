@@ -167,7 +167,8 @@ export class AddTaskComponent implements OnInit , OnChanges {
     }    
     else
     {
-      this.taskService.addTask(this.text,this.description,workTime ,this.date , this.type , this.project)
+      let taskObj = {text : this.text, description: this.description,timeWork : workTime ,date:this.date ,type: this.type , projectId: this.project}
+      this.taskService.addTask(taskObj)
       .subscribe((res)=>{
         if(res)
         {          

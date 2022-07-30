@@ -14,6 +14,7 @@ export class UserService {
   rowsCount: number;
   roleId:number;
   parent;
+  childs;
   readonly userUrl = 'https://localhost:7263/api/Users';
   readonly userParentUrl = 'https://localhost:7263/api/Users/UserParent';
   constructor(private http: HttpClient , private router:Router) {}
@@ -29,7 +30,7 @@ export class UserService {
       this.router.navigate(['/login'])
     }   
     let decoded = jwt_decode(token);
-    this.roleId = decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+    this.roleId = decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];    
     const headers = new HttpHeaders().set('Authorization','bearer ' + token);    
     const myObject: any = { searchKey: searchKey, pageNumber: pageNumber, pageSize: pageSize };
 
@@ -64,7 +65,6 @@ export class UserService {
   status(id) {
     let token = localStorage.getItem('token');
     let index = this.users.findIndex((user) => user.id == id);
-
     return this.http
       .put(
         this.userUrl + '/' + id,
@@ -82,13 +82,14 @@ export class UserService {
         headers: { Authorization: 'bearer ' + token },
       });
   }
-  addUser(registerObj) { 
+  addUser(registerObj) {     
     let token = localStorage.getItem('token');
     return this.http.post(this.userUrl, registerObj, {
       headers: { Authorization: 'bearer ' + token },
     });
   }
-  addUserParent(parent) { 
+  addUserParent(parent) {
+     
     let token = localStorage.getItem('token');
     return this.http.post(this.userParentUrl, parent, {
       headers: { Authorization: 'bearer ' + token },

@@ -16,18 +16,22 @@
         totalItems:userService.rowsCount
       } let i = index">
         <div class="d-flex justify-content-between align-items-center border rounded p-3 mb-2">
-            <div class="col-3 d-flex flex-column">
+            <div class="col-2 d-flex flex-column">
                 <div class="d-flex justify-content-center mb-3 pb-1 border-bottom h6">نام و نام خانوادگی</div>
                 <div>{{user.fullName}}</div>
             </div>
-            <div class="col-3 d-flex flex-column">
+            <div class="col-2 d-flex flex-column">
                 <div class="d-flex justify-content-center mb-3 pb-1 border-bottom h6">ایمیل</div>
                 <div class=" d-flex justify-content-end">{{user.email}}</div>
             </div> 
-            <div class="col-3 d-flex flex-column">
+            <div class="col-2 d-flex flex-column">
                 <div class="d-flex justify-content-center mb-3 pb-1 border-bottom h6">نام کاربری</div>
                 <div class=" d-flex justify-content-center ">{{user.userName}}</div>
-            </div>   
+            </div> 
+            <div class="col-2 d-flex flex-column">
+              <div class="d-flex justify-content-center mb-3 pb-1 border-bottom h6">نقش</div>
+              <div class=" d-flex justify-content-center ">{{user.roleId==1 ? "ادمین" : "کاربر"}}</div>
+          </div> 
           <div class="d-flex">      
               <button class="btn btn-outline-secondary fa fa-edit me-1" (click)="onEdit(user)"></button>
               <button class="btn btn-outline-secondary fa fa-trash me-1" (click)="onDelete(user.id)"></button>
@@ -52,7 +56,7 @@
 
   <ng-template #content let-modal>
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">تعیین مدیر</h4>
+      <h4 class="modal-title" id="modal-basic-title">اطلاعات کاربر</h4>
       <button
         type="button"
         class="btn-close"
@@ -62,7 +66,7 @@
     </div>
     <div class="modal-body">
       <div class="mb-3">
-        <label class="mt-3">مدیر:</label>
+        <label class="mt-3">تعیین مدیر:</label>
         <select
           class="form-select"
           aria-label="Default select example"
@@ -74,6 +78,20 @@
            [value]="user.id">{{user.fullName}}</option>
         </select>
       </div>
+      <!-- <div>
+        <label class="mt-3"> زیرمجموعه ها:</label>
+            <select
+            class="form-select"
+            aria-label="Default select example"
+            [(ngModel)]="childId"
+          >
+            <option [value]="0" disabled="true">...</option>
+            <option
+            *ngFor="let user of userService.users; let i=index"
+            disabled="true"
+            [value]="user.child">{{user.child[i]}}</option>
+          </select>
+      </div> -->
     </div>
     <div class="modal-footer">
       <button

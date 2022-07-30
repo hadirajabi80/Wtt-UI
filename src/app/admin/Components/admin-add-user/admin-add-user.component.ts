@@ -67,11 +67,8 @@ export class AdminAddUserComponent implements OnInit , OnChanges {
     this.email='';
     this.roleId=0;
   }
-  onSave() {
+  onSave() {    
     let registerObj = new Register(this.fullName, this.userName, this.email, this.password, this.roleId);
-    let edit=this.editUser.user;    
-    let editUser = new EditUser(edit.id,this.fullName, this.userName, this.email,edit.isActive, this.password,this.roleId)
-    let index = this.userService.users.findIndex((user) => user.id == this.editUser.user.id);
     if(!this.editStatus)
     {
       this.userService
@@ -94,7 +91,10 @@ export class AdminAddUserComponent implements OnInit , OnChanges {
         });
     }
     else if(this.editStatus)
-    {
+    {      
+      let edit=this.editUser.user; 
+      let editUser = new EditUser(edit.id,this.fullName, this.userName, this.email,edit.isActive, this.password,this.roleId) 
+      let index = this.userService.users.findIndex((user) => user.id == this.editUser.user.id);     
       this.userService.edit(editUser)
       .pipe(catchError(err => this.errorHandler(err)))
       .subscribe((res) => {

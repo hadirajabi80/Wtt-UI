@@ -67,7 +67,6 @@ export class ChartsComponent implements OnInit {
   constructor(public dashboardService: DashboardService) {}
 
   ngOnInit(): void {
-    
   }
 
 }

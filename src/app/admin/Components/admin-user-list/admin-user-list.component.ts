@@ -19,6 +19,7 @@ export class AdminUserListComponent implements OnInit {
   @Output() editUser = new EventEmitter<any>();
   modalRef : NgbModalRef;
   parentId:number=0;
+  childId:number=0;
   userId:number;
   constructor(public userService:UserService,private modalService: NgbModal , public toastr:ToastrService) { }
 
@@ -54,7 +55,7 @@ export class AdminUserListComponent implements OnInit {
   }
   onSave()
   {
-    let parentObj = new Parents(this.parentId,this.userId);
+    let parentObj = new Parents(this.userId,this.parentId);
 
     this.userService.addUserParent(parentObj)
     .pipe(catchError(err=>this.errorHandler(err)))

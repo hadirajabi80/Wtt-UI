@@ -19,6 +19,7 @@ export class Users{
         public isActive?:boolean ,
         public password?:string , 
         public role?:string,
+        public roleId?:number,
         public searchKey?:string,
         public pageNumber?:number,
         public pageSize?:number,
@@ -92,7 +93,7 @@ export class AddLoginTime{
     constructor(public type:number){}
 }
 export class Roles{
-    constructor(public name:string , public id:number){}
+    constructor(public name:string , public id:number , public userId:number){}
 }
 export class UserAddPresence{
     constructor( public startTime?:string , public endTime?:string,public date?:string){}

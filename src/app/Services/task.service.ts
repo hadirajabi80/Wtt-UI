@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams, HttpParamsOptions } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { delay, Observable } from 'rxjs';
 import { ResTask, Tasks, Users, UserTask } from '../Models/login';
 
 @Injectable({
@@ -44,15 +45,12 @@ export class TaskService {
     });
   }
 
-  addTask(text ,description, timeWork ,date,type ,projectId)
+  addTask(taskObj) : Observable<any>
   {
-        
     let token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization','bearer ' + token);    
-    let taskObj= new Tasks(text,description , timeWork , date ,type ,projectId);    
     return this.http.post(this.taskUrl,taskObj, {headers:headers});
   } 
-
 
   delete(id) {
     let token = localStorage.getItem('token');
