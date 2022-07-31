@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminAddUserComponent } from './Components/admin-add-user/admin-add-user.component';
+import { ChildInfo } from '../Models/login';
 import { AdminComponent } from './Components/admin/admin.component';
 
 const routes: Routes = [
-  {path:'' , component:AdminComponent}
+  {path:'' , component:AdminComponent},
+  {path:'userId' , component:ChildInfo}
+
 ];
 
 @NgModule({

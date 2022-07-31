@@ -189,7 +189,12 @@ export class Project
 export class Parents{
     constructor(public userId?:number , public parentId?:number){}
 }
-
+export class Childs{
+    constructor(public parentId?:number , public child?:ChildInfo[]){}
+}
+export class ChildInfo{
+    constructor(public id?:number , public childId?:number , public fullName?:string){}
+}
 
 
 

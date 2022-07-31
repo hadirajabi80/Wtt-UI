@@ -4,9 +4,7 @@
     [(ngModel)]="searchKey"
     placeholder="جستجو کنید..."
     >
-    <button class="btn btn-outline-info fa fa-search border" (click)="onSearch()"
-    
-    ></button>
+    <button class="btn btn-outline-info fa fa-search border" (click)="onSearch()"></button>
     </div>
 <div class="d-flex flex-row-reverse">
     <div class="col-12 position-relative">
@@ -15,6 +13,7 @@
         currentPage:pageNumber,
         totalItems:userService.rowsCount
       } let i = index">
+      <div class="d-flex flex-column">
         <div class="d-flex justify-content-between align-items-center border rounded p-3 mb-2">
             <div class="col-2 d-flex flex-column">
                 <div class="d-flex justify-content-center mb-3 pb-1 border-bottom h6">نام و نام خانوادگی</div>
@@ -30,21 +29,25 @@
             </div> 
             <div class="col-2 d-flex flex-column">
               <div class="d-flex justify-content-center mb-3 pb-1 border-bottom h6">نقش</div>
-              <div class=" d-flex justify-content-center ">{{user.roleId==1 ? "ادمین" : "کاربر"}}</div>
+              <div *ngIf="user.roleId==1" class=" d-flex justify-content-center ">ادمین</div>
+              <div *ngIf="user.roleId==2" class=" d-flex justify-content-center ">کاربر</div>
+              <div *ngIf="user.roleId==3" class=" d-flex justify-content-center ">مدیر</div>
           </div> 
           <div class="d-flex">      
               <button class="btn btn-outline-secondary fa fa-edit me-1" (click)="onEdit(user)"></button>
               <button class="btn btn-outline-secondary fa fa-trash me-1" (click)="onDelete(user.id)"></button>
-              <button class="btn btn-outline-secondary fa fa-user me-1" (click)="onUser(user.id,content)"></button>
+              <button class="btn btn-outline-secondary fa fa-user me-1 " (click)="onUser(user.id,content)"></button>
+              <button class="btn btn-outline-secondary fa fa-info me-1 " [routerLink]="['userId']" (click)="onUserInfo(user.id)"></button>
               <button  class="btn btn-outline-secondary" 
               [class.btn-outline-success]="user.isActive" [class.btn-outline-warning]="!user.isActive" (click)="onActive(user.id)">
               {{ user.isActive ? "فعال" : "غیر فعال" }}
             </button>
-
           </div>
       </div>
+    </div>
+
       </div>
-      <pagination-controls
+    <pagination-controls
       class="d-flex justify-content-center me-5"
       previousLabel="قبلی"
       nextLabel="بعدی"
@@ -61,25 +64,39 @@
         type="button"
         class="btn-close"
         aria-label="Close"
-        (click)="modal.dismiss('Cross click')"
+        (click)="modal.dismiss('Cross click');onClose()"
       ></button>
     </div>
     <div class="modal-body">
       <div class="mb-3">
         <label class="mt-3">تعیین مدیر:</label>
+        <div class="d-flex justify-content-between">
+          <div class="col-9 pe-0">
         <select
           class="form-select"
           aria-label="Default select example"
           [(ngModel)]="parentId"
         >
-          <option [value]="0">...</option>
+          <option [value]="0" disabled="true">...</option>
           <option
           *ngFor="let user of userService.users"
            [value]="user.id">{{user.fullName}}</option>
         </select>
       </div>
-      <!-- <div>
+        <div class="col-3">
+          <button
+          type="button"
+          class="btn btn-outline-dark"
+          (click)="onSave()">
+          انتخاب مدیر
+      </button>
+        </div>
+      </div>
+      </div>
+      <div *ngIf="userParent.child && userParent.parentId==userId">
         <label class="mt-3"> زیرمجموعه ها:</label>
+        <div class="d-flex justify-content-between mb-3">
+        <div class="col-9 pe-0">
             <select
             class="form-select"
             aria-label="Default select example"
@@ -87,21 +104,16 @@
           >
             <option [value]="0" disabled="true">...</option>
             <option
-            *ngFor="let user of userService.users; let i=index"
-            disabled="true"
-            [value]="user.child">{{user.child[i]}}</option>
+            *ngFor="let child of userParent.child ; let i=index"
+            [value]="child.id">
+            {{child.fullName}}
+          </option>
           </select>
-      </div> -->
-    </div>
-    <div class="modal-footer">
-      <button
-        type="button"
-        class="btn btn-outline-dark"
-        (click)="onSave()">
-        تعیین مدیر
-    </button>
+        </div>
+        <div class="col-3 ">
+          <button class="btn btn-danger " (click)="onDeleteChild()">حذف کاربر</button>
+        </div>
+      </div>
+      </div>
     </div>
   </ng-template>
-
-
-  

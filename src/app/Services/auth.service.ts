@@ -29,8 +29,9 @@ export class AuthService {
       let token = localStorage.getItem('token');
       let decoded = jwt_decode(token);
       let isAdmin="1" === decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+      let isManager="3" === decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];      
       let isValidToken: boolean = !!token;
-      if(!isAdmin)
+      if(!isAdmin && !isManager)
       {
         isValidToken=false;
       }      
