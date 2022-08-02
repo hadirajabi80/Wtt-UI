@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FilterType } from 'src/app/Models/login';
+import { FilterStatusType, FilterType } from 'src/app/Models/login';
 import { DashboardService } from 'src/app/Services/dashboard.service';
 import { TaskService } from 'src/app/Services/task.service';
 
@@ -17,6 +17,8 @@ export class UserFunctionComponent implements OnInit {
     pageSize:10,
     searchKey:''
   }
+  confirmedType = FilterStatusType.GETALL;
+
   constructor(public dashboardService: DashboardService ,public taskService:TaskService) {}
 
 
@@ -33,7 +35,7 @@ export class UserFunctionComponent implements OnInit {
   onChangeTable(e)
   {
     this.query.pageNumber=e;    
-    this.taskService.getAll(this.query.searchKey ,this.query.pageNumber,this.query.pageSize,this.dateType);     
+    this.taskService.getAll(this.query.searchKey ,this.query.pageNumber,this.query.pageSize,this.dateType ,this.confirmedType);     
   }
   
 }

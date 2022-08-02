@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-between align-items-center border rounded p-3 mb-2">
+    <div class="col-6 d-flex justify-content-between"
+    (click)="collapse.toggle()"
+    [attr.aria-expanded]="!isShowed"
+    aria-controls="collapseExample"
+    >
+    <div
+    type="button"
+    class="d-flex flex-column">
+    <div>{{task.text}}</div>
+</div>
+    <div *ngIf="task.type==1" class="btn btn-outline-secondary fa fa-home ">
+    </div>
+    <div class="btn btn-sm me-5 btn-warning"
+    *ngIf="task.confirmType==0">
+    در حال بررسی
+    </div>
+    <div class="btn btn-sm me-5 btn-success"
+    *ngIf="task.confirmType==1">
+    تایید شده
+    </div>
+    <div class="btn btn-sm me-5 btn-danger"
+    *ngIf="task.confirmType==2">
+    رد شده
+    </div>
+</div>
+    <div>
+        {{task.date | jalali}}
+    </div>
+    <div class="d-flex">
+        <input
+        class="btn btn-outline-secondary"
+        type="button"
+        value="{{task.timeWork | time}}">
+    </div> 
+    <div class="d-flex flex-column justify-content-center">
+        <label>وضعیت</label>
+        <select  class="form-select" [(ngModel)]="type" (change)="onSelect()" >
+            <option value="0">درحال بررسی</option>
+            <option value="1">تایید شده</option>
+            <option value="2">رد شده</option>
+        </select>
+        <button *ngIf="showBtn" class="btn btn-success btn-sm mt-2" (click)="onChangeType()" >اعمال تغییرات</button>
+    </div>
+</div>
+<div #collapse="ngbCollapse"
+    [(ngbCollapse)]="isShowed"
+    >
+    <div class="card-body">
+        {{task.description}}
+    </div>
+</div>

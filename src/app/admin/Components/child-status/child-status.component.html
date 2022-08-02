@@ -1,0 +1,73 @@
+<div *ngIf="type==1">
+    <div class="col-6 mb-2 d-flex pe-0">
+        <input type="text" 
+        class="form-control"
+        [(ngModel)]="searchKey"
+        placeholder="جستجو کنید..."
+        >
+        <button class="btn btn-outline-info fa fa-search border" (click)="onSearch()"
+        
+        ></button>
+        </div>
+        <div class="nav nav-tabs">
+          <button class="btn nav-link text-dark col-12 active">وظایف</button>
+        </div>
+<div *ngFor="let task of taskService.userTaskAdmin | paginate
+: {
+    itemsPerPage: pageSize,
+    currentPage: pageNumber,
+    totalItems: taskService.rowsCount
+  }">    
+  <app-child-task [task]="task"></app-child-task>
+</div>
+</div>
+
+<div *ngIf="type==2">
+  <div class="nav nav-tabs">
+    <button class="btn nav-link text-dark col-12 active">مرخصی ها</button>
+  </div>
+<div *ngFor="let vacation of userVacationService.userVacationsAdmin| paginate
+: {
+    itemsPerPage: pageSize,
+    currentPage: pageNumber,
+    totalItems: userVacationService.rowsCount
+  }">    
+  <app-child-vacation [userVacation]="vacation"></app-child-vacation>
+</div>
+</div>
+
+<div *ngIf="type==3">
+  <div class="nav nav-tabs">
+    <button class="btn nav-link text-dark col-12 active">ماموریت ها</button>
+  </div>
+<div *ngFor="let mission of userMissionService.userMissionsAdmin| paginate
+: {
+    itemsPerPage: pageSize,
+    currentPage: pageNumber,
+    totalItems: userMissionService.rowsCount
+  }">    
+  <app-child-mission [userMissions]="mission"></app-child-mission>
+</div>
+</div>
+
+<div *ngIf="type==4">
+  <div class="nav nav-tabs">
+    <button class="btn nav-link text-dark col-12 active">حضور</button>
+  </div>
+<div *ngFor="let presence of userPresenceService.userPresenceAdmin| paginate
+: {
+    itemsPerPage: pageSize,
+    currentPage: pageNumber,
+    totalItems: userPresenceService.rowsCount
+  }">    
+  <app-child-presence [userPresence]="presence"></app-child-presence>
+</div>
+</div>
+<pagination-controls
+*ngIf="type!=0"
+class="d-flex justify-content-center me-5"
+previousLabel="قبلی"
+nextLabel="بعدی"
+(pageChange)="onChangeTable($event)"
+>
+</pagination-controls>

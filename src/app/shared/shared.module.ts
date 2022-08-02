@@ -8,11 +8,16 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FilterDateComponent } from './Components/filter-date/filter-date.component';
 import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
+import { JalaliPipe, TimePipe } from '../Models/custom-pipe';
+import { FilterStatusComponent } from './filter-status/filter-status.component';
 
 @NgModule({
   declarations: [
     DatePickerComponent,
     FilterDateComponent,
+    JalaliPipe,
+    TimePipe,
+    FilterStatusComponent
   ],
   imports: [
     CommonModule,
@@ -25,6 +30,9 @@ import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
   exports:[
     DatePickerComponent,
     FilterDateComponent,
+    FilterStatusComponent,
+    JalaliPipe,
+    TimePipe
   ]
 })
 export class SharedModule { }

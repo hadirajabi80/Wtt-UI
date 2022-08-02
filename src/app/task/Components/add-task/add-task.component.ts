@@ -3,7 +3,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'jalali-moment';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, throwError } from 'rxjs';
-import { FilterType } from 'src/app/Models/login';
+import { FilterStatusType, FilterTaskLocation, FilterType } from 'src/app/Models/login';
 import { ProjectService } from 'src/app/Services/project.service';
 import { TaskService } from 'src/app/Services/task.service';
 
@@ -27,7 +27,9 @@ export class AddTaskComponent implements OnInit , OnChanges {
   project;
   task;
   type;
-
+  confirmedType = FilterStatusType.GETALL
+  taskLocation =FilterTaskLocation.GETALL;
+  showHome:boolean =false;
   @Input() editTask;
   @ViewChild('content') content;
 
@@ -78,7 +80,7 @@ export class AddTaskComponent implements OnInit , OnChanges {
   filterDate(date)
   {  
     this.dateType=date;
-    this.taskService.getAll('',1,10,date)  
+    this.taskService.getAll('',1,10,date ,this.confirmedType,this.taskLocation)  
   }
   closeModal()
   {
@@ -195,5 +197,22 @@ export class AddTaskComponent implements OnInit , OnChanges {
   errorHandler(err) { 
     this.toastr.error('پنجره زمانی نقض شده است.');
     return throwError(err);
+  }
+  filterStatus(type)
+  {
+    this.confirmedType =type;
+    this.taskService.getAll('',1,10, this.dateType , type,this.taskLocation);
+  }
+  onShowHome()
+  {
+    this.showHome=!this.showHome;
+    if (this.showHome) 
+    {
+      this.taskService.getAll('',1,10, this.dateType , this.confirmedType,FilterTaskLocation.HOME);
+    }
+    else
+    {
+      this.taskService.getAll('',1,10, this.dateType , this.confirmedType,FilterTaskLocation.GETALL)
+    }
   }
 }

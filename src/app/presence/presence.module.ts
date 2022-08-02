@@ -9,13 +9,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PresenceListComponent } from './Components/presence-list/presence-list.component';
 import { DpDatePickerModule } from 'ng2-jalali-date-picker';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { JalaliPipe } from '../Models/custom-pipe';
 
 @NgModule({
   declarations: [
     PresenceComponent,
     PresenceListComponent,
-    JalaliPipe
     ],
   imports: [
     CommonModule,

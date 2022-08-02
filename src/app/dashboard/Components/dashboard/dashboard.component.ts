@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FilterType, LoginTime } from 'src/app/Models/login';
+import { FilterStatusType, FilterTaskLocation, FilterType, Presence } from 'src/app/Models/login';
 import { DashboardService } from 'src/app/Services/dashboard.service';
 import { ProjectService } from 'src/app/Services/project.service';
 import { TaskService } from 'src/app/Services/task.service';
-import { UserLoginTimeService } from 'src/app/Services/user-login-time.service';
+import { UserPresenceService } from 'src/app/Services/user-presence.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,11 +13,12 @@ import { UserLoginTimeService } from 'src/app/Services/user-login-time.service';
 export class DashboardComponent implements OnInit {
   addLoginTime: number;
 
-  lastState: LoginTime;
-
+  lastState: Presence;
+  confirmedType = FilterStatusType.GETALL;
   isStarted: boolean = false;
 
   dateType :any = {type:FilterType.CURRENT_MONTH_TODAY};
+  taskLocation =FilterTaskLocation.GETALL;
 
   time: string = '00:00';
   showTime: boolean = false;
@@ -26,35 +27,39 @@ export class DashboardComponent implements OnInit {
     searchKey:''
   }
   constructor(
-    public userLoginTimeService: UserLoginTimeService,
+    public userPresenceService: UserPresenceService,
     public dashboardService:DashboardService,
     public taskService:TaskService,
     public projectService:ProjectService
   ) {}
   ngOnInit(): void {    
-    this.userLoginTimeService.getUserLastStatus().subscribe((res) => {
+    this.userPresenceService.getUserLastStatus().subscribe((res) => {
       this.lastState = res;
       this.isStarted = this.lastState && this.lastState.endTime == null;
-      if(res.startTime !=null)
+      if(res)
       {
-        this.calcTime(res.startTime);
+        if(res.startTime !=null)
+        {
+          this.calcTime(res.startTime);
+        }
       }
+
       this.projectService.getProjects();
     });
     this.dashboardService.getAll(this.dateType);
-    this.taskService.getAll(this.queryEmit.searchKey,this.queryEmit.pageNumber,this.queryEmit.pageSize ,this.dateType);
+    this.taskService.getAll(this.queryEmit.searchKey,this.queryEmit.pageNumber,this.queryEmit.pageSize ,this.dateType , this.confirmedType ,this.taskLocation);
 
   }
   startTime() {
     this.isStarted = !this.isStarted;
     this.addLoginTime = 1;
-    this.userLoginTimeService.add(this.addLoginTime);
+    this.userPresenceService.add(this.addLoginTime);
   }
   endTime() {
     this.isStarted = !this.isStarted;
     this.showTime =false;
     this.addLoginTime = 0;
-    this.userLoginTimeService.add(this.addLoginTime);
+    this.userPresenceService.add(this.addLoginTime);
   }
   isTokenValid() {
     let token = localStorage.getItem('token');
@@ -88,7 +93,7 @@ export class DashboardComponent implements OnInit {
   {
     this.queryEmit=e;
     this.queryEmit.pageNumber=1;
-    this.taskService.getAll(this.queryEmit.searchKey,this.queryEmit.pageNumber,this.queryEmit.pageSize ,this.dateType);    
+    this.taskService.getAll(this.queryEmit.searchKey,this.queryEmit.pageNumber,this.queryEmit.pageSize ,this.dateType ,this.confirmedType, this.taskLocation);    
   }
 
 }

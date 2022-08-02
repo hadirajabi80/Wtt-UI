@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-between align-items-center border rounded p-3 mb-2 link-secondary">
+    <div class="col-6 d-flex justify-content-between">
+        <div 
+        (click)="collapse.toggle()" 
+        [attr.aria-expanded]="!isShowed"
+        aria-controls="collapseExample"
+        type="button">{{userMissions.title}}</div>
+        <div class="btn btn-sm me-5 btn-warning"
+        *ngIf="userMissions.confirmType==0">
+        در حال بررسی
+        </div>
+        <div class="btn btn-sm me-5 btn-success"
+        *ngIf="userMissions.confirmType==1">
+        تایید شده
+        </div>
+        <div class="btn btn-sm me-5 btn-danger"
+        *ngIf="userMissions.confirmType==2">
+        رد شده
+        </div>
+    </div>
+        <div class="col-2">
+            {{userMissions.date | jalali}}
+        </div>
+        <div class="d-flex flex-column justify-content-center">
+            <label>وضعیت</label>
+            <select  class="form-select" [(ngModel)]="type" (change)="onSelect()" >
+                <option value="0">درحال بررسی</option>
+                <option value="1">تایید شده</option>
+                <option value="2">رد شده</option>
+            </select>
+            <button *ngIf="showBtn" class="btn btn-success btn-sm mt-2" (click)="onChangeType()" >اعمال تغییرات</button>
+        </div>
+    </div>
+    <div #collapse="ngbCollapse" 
+        [(ngbCollapse)]="isShowed"
+        >
+        <div class="card-body">
+            {{userMissions.description}}
+        </div>
+    </div>
+    
+    

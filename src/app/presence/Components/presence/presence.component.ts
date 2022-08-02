@@ -4,7 +4,7 @@ import * as moment from 'jalali-moment';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, throwError } from 'rxjs';
 import { FilterType } from 'src/app/Models/login';
-import { UserLoginTimeService } from 'src/app/Services/user-login-time.service';
+import { UserPresenceService } from 'src/app/Services/user-presence.service';
 
 @Component({
   selector: 'app-presence',
@@ -23,7 +23,7 @@ export class PresenceComponent implements OnInit {
   editStatus:boolean=false;
   dateType :any = {type:FilterType.CURRENT_MONTH};
   presence;
-  constructor(private modalService: NgbModal ,public userLoginTimeService:UserLoginTimeService , private toastr:ToastrService) {}
+  constructor(private modalService: NgbModal ,public userPresenceService:UserPresenceService , private toastr:ToastrService) {}
 
   ngOnInit(): void {
   }
@@ -34,7 +34,7 @@ export class PresenceComponent implements OnInit {
   onEdit(presence, content)
   {   
     this.editStatus=true;
-    this.presence = this.userLoginTimeService.times.find(p=>p.id == presence.id);
+    this.presence = this.userPresenceService.presence.find(p=>p.id == presence.id);
     this.modalRef = this.modalService.open( content ,{size:'md' , centered:true , backdrop:false});
     let start=new Date(this.presence.startTime*1000);
     let end=new Date(this.presence.endTime*1000);
@@ -70,11 +70,11 @@ export class PresenceComponent implements OnInit {
     }
     if(this.editStatus==true){
       let presenceObj = {id: this.presence.id,startTime: this.dateTimeStart,endTime:this.dateTimeEnd,date: this.date};
-      let index = this.userLoginTimeService.times.findIndex((m) => m.id == presenceObj.id);
-      this.userLoginTimeService.edit(presenceObj)
+      let index = this.userPresenceService.presence.findIndex((m) => m.id == presenceObj.id);
+      this.userPresenceService.edit(presenceObj)
       .pipe(catchError(err => this.errorHandler(err)))
       .subscribe((res) => {
-        this.userLoginTimeService.times[index]=res;
+        this.userPresenceService.presence[index]=res;
         this.modalService.dismissAll();
         this.dateObject=moment(Date.now());
         this.toastr.success("حضور با موفقیت ویرایش شد")
@@ -84,9 +84,9 @@ export class PresenceComponent implements OnInit {
       });
     }
     else{
-      this.userLoginTimeService.userAdd(this.dateTimeStart , this.dateTimeEnd ,this.date)
+      this.userPresenceService.userAdd(this.dateTimeStart , this.dateTimeEnd ,this.date)
         .subscribe((res)=>{
-          this.userLoginTimeService.times.unshift(res);
+          this.userPresenceService.presence.unshift(res);
           this.modalService.dismissAll();
           this.toastr.success("حضور با موفقیت ثبت شد")
           this.dateObject=moment(Date.now());
@@ -108,7 +108,7 @@ export class PresenceComponent implements OnInit {
   filterDate(date)
   {
     this.dateType=date;            
-    this.userLoginTimeService.getAll(1,10,date)  
+    this.userPresenceService.getAll(1,10,date)  
   }
 
 }

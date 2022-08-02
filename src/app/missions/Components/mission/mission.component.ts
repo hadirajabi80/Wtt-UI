@@ -3,7 +3,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'jalali-moment';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, throwError } from 'rxjs';
-import { FilterType } from 'src/app/Models/login';
+import { FilterStatusType, FilterType } from 'src/app/Models/login';
 import { UserMissionService } from 'src/app/Services/user-mission.service';
 
 @Component({
@@ -25,10 +25,12 @@ export class MissionComponent implements OnInit {
   dateType = {type:FilterType.CURRENT_MONTH};
   editStatus:boolean=false;
   userMission;
+  confirmedType = FilterStatusType.GETALL;
+
   constructor(private modalService: NgbModal , public userMissionService : UserMissionService , private toastr:ToastrService  ) {}
 
   ngOnInit(): void {
-    this.userMissionService.getAll('',this.pageNumber,this.pageSize ,this.dateType);     
+    this.userMissionService.getAll('',this.pageNumber,this.pageSize ,this.dateType , this.confirmedType);     
   }
   open(content) {
 
@@ -126,7 +128,7 @@ export class MissionComponent implements OnInit {
   filterDate(date)
   { 
     this.dateType=date;        
-    this.userMissionService.getAll('',1,10,date)  
+    this.userMissionService.getAll('',1,10,date , this.confirmedType)  
   }
   onChangeTable(e)
   {    
@@ -140,5 +142,10 @@ export class MissionComponent implements OnInit {
     this.description='';
     this.title='';
     this.location='';
+  }
+  filterStatus(type)
+  {
+    this.confirmedType =type;
+    this.userMissionService.getAll('', this.pageNumber, this.pageSize, this.dateType , type);
   }
 }

@@ -117,5 +117,17 @@
     </button>
     <div class="col-12 bg bg-white p-0 mt-5">
       <app-filter-date (filterDate)="filterDate($event)"></app-filter-date>
+      <div class="pb-3">
+        <button 
+        class="btn border-0 btn-block text-start p-1 d-flex align-content-center align-items-center"
+        [class.btn-info]="showHome" [class.btn-outline-info]="!showHome"
+        (click)="onShowHome()">
+           <i class="fa fa-home fa-2x pr-4 pl-1"></i> دورکاری ها 
+          </button>
+      </div>
+      <hr>
+      <div class="me-4 pb-3">
+        <app-filter-status (filterStatus)="filterStatus($event)"></app-filter-status>
+      </div>
     </div>
   </div>

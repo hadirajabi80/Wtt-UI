@@ -1,10 +1,6 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild, ViewChildren } from '@angular/core';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit } from '@angular/core';
 import { TaskService } from 'src/app/Services/task.service';
-import * as moment from 'jalali-moment';
-import { FilterType } from 'src/app/Models/login';
-import { ToastrService } from 'ngx-toastr';
-import { catchError, throwError } from 'rxjs';
+import { FilterStatusType, FilterTaskLocation, FilterType } from 'src/app/Models/login';
 import { TaskLocationService } from 'src/app/Services/task-location.service';
 import { ProjectService } from 'src/app/Services/project.service';
 
@@ -21,6 +17,8 @@ export class TasksComponent implements OnInit {
   searchKey: string = '';
   dateType :any = {type:FilterType.CURRENT_MONTH_TODAY};
   editTask;
+  confirmedType = FilterStatusType.GETALL;
+  taskLocation =FilterTaskLocation.GETALL;
   constructor(public taskService:TaskService ,
     public taskLocationService:TaskLocationService,
     public projectService:ProjectService
@@ -28,13 +26,13 @@ export class TasksComponent implements OnInit {
 
 
   ngOnInit(): void {     
-   this.taskService.getAll(this.searchKey,this.pageNumber,this.pageSize ,this.dateType);
+   this.taskService.getAll(this.searchKey,this.pageNumber,this.pageSize ,this.dateType , this.confirmedType , this.taskLocation);
    this.projectService.getProjects();
   }
   onChangeTable(e)
   {
     this.pageNumber=e;    
-    this.taskService.getAll(this.searchKey ,this.pageNumber,this.pageSize,this.dateType);     
+    this.taskService.getAll(this.searchKey ,this.pageNumber,this.pageSize,this.dateType , this.confirmedType , this.taskLocation);     
   }
   onEdit(e)
   {

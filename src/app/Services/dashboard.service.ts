@@ -6,6 +6,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { interval } from 'rxjs';
 import { ResDashboard } from '../Models/login';
 @Injectable({
   providedIn: 'root',
@@ -70,6 +71,9 @@ export class DashboardService {
       fromObject: myObject,
     } as HttpParamsOptions;
     const options = { params: new HttpParams(httpParams), headers: headers };    
-    return this.http.get<ResDashboard>(this.taskUrl+"/" + "Admin", options);
+    return this.http.get<ResDashboard>(this.taskUrl+"/" + "Admin", options)
+    .subscribe((res) => {      
+      this.resDashboardAdmin=res;
+    });
   }
 }

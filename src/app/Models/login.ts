@@ -40,7 +40,7 @@ export class ResUser{
     constructor(public rows:number , public users:Users[] ){}
 }
 export class ResPresence{
-    constructor(public rows?:number , public userPresence?:LoginTime[] ){}
+    constructor(public rows?:number , public userPresence?:Presence[] ){}
 }
 export class ResTask{
     constructor(public rows?:number , public userTasks?:UserTask[] ){}
@@ -75,7 +75,7 @@ export class Tasks{
          public projectId:number
          ){}
 }
-export class LoginTime{
+export class Presence{
     constructor( public startTime?:number ,
          public endTime?:number,
          public timeDifference?:number,
@@ -108,6 +108,17 @@ export enum FilterType {
     TODAY="TODAY",
     YESTERDAY="YESTERDAY"
 
+}
+export enum FilterStatusType {
+    CONFIRMED = "CONFIRMED",
+    REJECTED = "REJECTED",
+    PENDING = "PENDING",
+    GETALL = "GETALL"
+}
+export enum FilterTaskLocation {
+    COMPANY = "COMPANY",
+    HOME = "HOME",
+    GETALL = "GETALL"
 }
 export class FilterDate{
     constructor( public startDate?:Date , public endDate?:Date){}

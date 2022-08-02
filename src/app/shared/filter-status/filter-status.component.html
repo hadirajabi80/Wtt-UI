@@ -1,0 +1,12 @@
+<div>
+  <button class="btn col-12 d-flex align-items-center p-0 text-secondary mb-1" (click)="onFilterStatus(filterStatusType.GETALL)">همه</button>
+</div>
+<div>
+  <button class="btn col-12 d-flex align-items-center p-0 text-secondary mb-1" (click)="onFilterStatus(filterStatusType.CONFIRMED)">تایید شده ها</button>
+</div>
+<div>
+  <button class="btn col-12 d-flex align-items-center p-0 text-secondary mb-1" (click)="onFilterStatus(filterStatusType.PENDING)"> در انتظار تایید</button>
+</div>
+<div>
+  <button class="btn col-12 d-flex align-items-center p-0 text-secondary" (click)="onFilterStatus(filterStatusType.REJECTED)"> تایید نشده ها</button>
+</div>

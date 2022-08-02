@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserLoginTimeService } from 'src/app/Services/user-login-time.service';
+import { UserPresenceService } from 'src/app/Services/user-presence.service';
 import { UserService } from 'src/app/Services/user.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { UserService } from 'src/app/Services/user.service';
 })
 export class ContainerComponent implements OnInit {
 
-  constructor(public userLoginTimeService: UserLoginTimeService, private router:Router, public userService:UserService) {}
+  constructor(public userPresenceService: UserPresenceService, private router:Router, public userService:UserService) {}
   ngOnInit(): void {
     this.userService.getAll();
   }

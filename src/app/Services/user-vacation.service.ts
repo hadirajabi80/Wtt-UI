@@ -19,6 +19,7 @@ import {
 })
 export class UserVacationService {
   userVacations: UserVacation[];
+  userVacationsAdmin : UserVacation[];
   rowsCount: number;
   users: Users[];
   filterDate: FilterDate[];
@@ -26,7 +27,7 @@ export class UserVacationService {
 
   constructor(private http: HttpClient , private router:Router) {}
 
-  getAll(searchKey?, pageNumber?, pageSize?, date?) {
+  getAll(searchKey?, pageNumber?, pageSize?, date? , confirmedType?) {
     let token = localStorage.getItem('token');
     const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
     let exp= parseInt(expiry);    
@@ -43,6 +44,7 @@ export class UserVacationService {
       type: date.type,
       startDate: date.startDate,
       endDate: date.endDate,
+      confirmedType : confirmedType
     };
 
     for (let prop of Object.keys(myObject)) {
@@ -87,6 +89,48 @@ export class UserVacationService {
     let token = localStorage.getItem('token');
     return this.http
       .put(this.vacationUrl + '/' + vacationObj.id, vacationObj, {
+        headers: { Authorization: 'bearer ' + token },
+      })
+  }
+  getVacationsByAdmin(searchKey?, pageNumber?, pageSize?, date? , userId? , confirmedType?) {
+    let token = localStorage.getItem('token');
+    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+    let exp= parseInt(expiry);    
+    if(exp <= Math.floor(Date.now()/1000))
+    {
+      localStorage.clear();
+      this.router.navigate(['/login'])
+    } 
+    const headers = new HttpHeaders().set('Authorization', 'bearer ' + token);
+    const myObject: any = {
+      searchKey: searchKey,
+      pageNumber: pageNumber,
+      pageSize: pageSize,
+      type: date.type,
+      startDate: date.startDate,
+      endDate: date.endDate,
+      userId : userId,
+      confirmedType :confirmedType
+    };
+    for (let prop of Object.keys(myObject)) {
+      if (!myObject[prop]) delete myObject[prop];
+    }
+    const httpParams: HttpParamsOptions = {
+      fromObject: myObject,
+    } as HttpParamsOptions;
+    const options = { params: new HttpParams(httpParams), headers: headers };
+
+    return this.http
+      .get<ResVacation>(this.vacationUrl + '/Admin', options)
+      .subscribe((res) => {
+        this.userVacationsAdmin = res.userVacations;
+        this.rowsCount = res.rows;
+      });
+  }
+  status(confirmType) {    
+    let token = localStorage.getItem('token');
+    return this.http
+      .put(this.vacationUrl + '/Admin/' + confirmType.id, confirmType, {
         headers: { Authorization: 'bearer ' + token },
       })
   }

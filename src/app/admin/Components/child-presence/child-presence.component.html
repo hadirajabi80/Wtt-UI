@@ -1,0 +1,28 @@
+<div class="d-flex flex-row-reverse">
+    <div class="col-12 position-relative pe-0">      
+        <div class="d-flex justify-content-between align-items-center border rounded p-3 mb-2">
+          <div class="col-6 d-flex justify-content-between">
+          <div
+          type="button"
+          class="d-flex flex-column align-content-center align-items-center">
+          <div class="mb-3 btn btn-info btn-sm">زمان ورود</div>
+          <div>{{ userPresence.startTime * 1000 | date: "H:mm" }}</div>
+      </div>
+      <div
+      type="button"
+      class="d-flex flex-column align-content-center align-items-center">
+      <div class="mb-3 btn btn-danger btn-sm">زمان خروج</div>
+      <div *ngIf="userPresence.endTime == null">{{ userPresence.endTime }}</div>
+      <div *ngIf="userPresence.endTime != null">{{ userPresence.endTime * 1000 | date: "H:mm" }}</div>
+      </div>
+      
+      </div>
+          <div>
+            {{userPresence.date | jalali }}
+          </div>
+      </div>
+    </div>
+</div>
+
+
+  

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, throwError } from 'rxjs';
@@ -25,6 +25,7 @@ export class AdminUserListComponent implements OnInit {
   childId:number=0;
   userId:number;
   parent;
+  user;
   dateType :any = {type:FilterType.CURRENT_MONTH_TODAY};
 
   constructor(public userService:UserService,
@@ -32,7 +33,7 @@ export class AdminUserListComponent implements OnInit {
      public toastr:ToastrService ,
       public userParent:UserParentService,
       public dashboardService :DashboardService,
-      private router:Router
+      private router :Router
       ) { }
 
   ngOnInit(): void {
@@ -111,12 +112,5 @@ export class AdminUserListComponent implements OnInit {
   {
     this.childId=0
     this.parentId=0;
-  }
-  onUserInfo(userId)
-  {
-    this.dashboardService.GetUserStatusByAdmin(userId ,this.dateType)
-    .subscribe((res) => {      
-      this.dashboardService.resDashboardAdmin=res;
-    });
   }
 }

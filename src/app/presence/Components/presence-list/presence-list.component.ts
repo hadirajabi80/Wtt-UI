@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import * as moment from 'jalali-moment';
 import { FilterType } from 'src/app/Models/login';
-import { UserLoginTimeService } from 'src/app/Services/user-login-time.service';
+import { UserPresenceService } from 'src/app/Services/user-presence.service';
 
 @Component({
   selector: 'app-presence-list',
@@ -14,9 +13,9 @@ export class PresenceListComponent implements OnInit {
   @Input() dateType: any = { type: FilterType.CURRENT_MONTH };
 
   @Output() editPresence = new EventEmitter<any>();
-  constructor(public userLoginTimeService: UserLoginTimeService) {}
+  constructor(public userPresenceService: UserPresenceService) {}
   ngOnInit(): void {    
-    this.userLoginTimeService.getAll(
+    this.userPresenceService.getAll(
       this.pageNumber,
       this.pageSize,
       this.dateType
@@ -24,11 +23,11 @@ export class PresenceListComponent implements OnInit {
     
   }
   onDelete(id) {
-    this.userLoginTimeService.delete(id);
+    this.userPresenceService.delete(id);
   }
   onChangeTable(e) {
-    this.pageNumber = e;
-    this.userLoginTimeService.getAll(
+      this.pageNumber = e;
+      this.userPresenceService.getAll(
       this.pageNumber,
       this.pageSize,
       this.dateType

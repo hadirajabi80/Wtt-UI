@@ -9,7 +9,6 @@ import { ContainerComponent } from './Components/container/container.component';
 import { TaskModule } from './task/task.module';
 import { LoginModule } from './login/login.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -21,7 +20,7 @@ import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
-    ContainerComponent
+    ContainerComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +30,6 @@ import { SharedModule } from './shared/shared.module';
     TaskModule,
     LoginModule,
     DashboardModule,
-    FontAwesomeModule,
     NgbModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({

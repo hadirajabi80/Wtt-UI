@@ -9,6 +9,7 @@ import { FilterDate, ResMission, UserAddMission, UserMission, Users } from '../M
 export class UserMissionService {
 
   userMissions:UserMission[];
+  userMissionsAdmin:UserMission[];
   rowsCount:number;
   users: Users[];
   filterDate:FilterDate[];
@@ -16,7 +17,7 @@ export class UserMissionService {
 
   constructor(private http: HttpClient , private router:Router) { }
 
-  getAll(searchKey? , pageNumber?, pageSize? , date?) {
+  getAll(searchKey? , pageNumber?, pageSize? , date? , confirmedType?) {
     let token = localStorage.getItem('token');
     const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
     let exp= parseInt(expiry);    
@@ -26,7 +27,14 @@ export class UserMissionService {
       this.router.navigate(['/login'])
     } 
     const headers = new HttpHeaders().set('Authorization','bearer ' + token);    
-    const myObject: any = { searchKey: searchKey, pageNumber: pageNumber, pageSize: pageSize,type:date.type ,startDate:date.startDate,endDate:date.endDate  };
+    const myObject: any = { searchKey: searchKey,
+       pageNumber: pageNumber,
+        pageSize: pageSize,
+        type:date.type ,
+        startDate:date.startDate,
+        endDate:date.endDate,
+        confirmedType : confirmedType
+        };
     
     for(let prop of Object.keys(myObject)){
       if(!myObject[prop])
@@ -68,6 +76,48 @@ export class UserMissionService {
     let token = localStorage.getItem('token');
     return this.http
       .put(this.missionUrl + '/' + missionObj.id , missionObj ,  {headers: {Authorization: 'bearer ' + token,}});
+  }
+  getMissionsByAdmin(searchKey? , pageNumber?, pageSize? , date? , userId? , confirmedType?) {
+    let token = localStorage.getItem('token');
+    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+    let exp= parseInt(expiry);    
+    if(exp <= Math.floor(Date.now()/1000))
+    {
+      localStorage.clear();
+      this.router.navigate(['/login'])
+    } 
+    const headers = new HttpHeaders().set('Authorization','bearer ' + token);    
+    const myObject: any = { searchKey: searchKey,
+       pageNumber: pageNumber,
+        pageSize: pageSize,
+        type:date.type ,
+        startDate:date.startDate,
+        endDate:date.endDate ,
+         userId:userId,
+         confirmedType :confirmedType
+        };
+    
+    for(let prop of Object.keys(myObject)){
+      if(!myObject[prop])
+        delete myObject[prop];
+    }    
+    const httpParams: HttpParamsOptions = {
+      fromObject: myObject,
+    } as HttpParamsOptions;
+    const options = { params: new HttpParams(httpParams), headers:headers };
+
+    return this.http.get<ResMission>(this.missionUrl+"/Admin" ,options)
+    .subscribe((res) => {        
+      this.userMissionsAdmin = res.userMissions;
+      this.rowsCount=res.rows;               
+    });
+  }
+  status(confirmType) {    
+    let token = localStorage.getItem('token');
+    return this.http
+      .put(this.missionUrl + '/Admin/' + confirmType.id, confirmType, {
+        headers: { Authorization: 'bearer ' + token },
+      })
   }
 }
 

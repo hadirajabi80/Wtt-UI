@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'jalali-moment';
 import { FilterType } from 'src/app/Models/login';
-import { UserLoginTimeService } from 'src/app/Services/user-login-time.service';
+import { UserPresenceService } from 'src/app/Services/user-presence.service';
 
 @Component({
   selector: 'app-filter-date',
@@ -22,7 +22,7 @@ export class FilterDateComponent implements OnInit {
 
 
 
-  constructor(private modalService: NgbModal ,public userLoginTimeService:UserLoginTimeService) {}
+  constructor(private modalService: NgbModal ,public userPresenceService:UserPresenceService) {}
 
   ngOnInit(): void {
   }
@@ -53,7 +53,7 @@ export class FilterDateComponent implements OnInit {
     this.dateEnded= endDate;
   }
   onFilter(type,val)
-  {
+  {    
     this.filterName=val;        
     this.filterDate.emit({type});
   }

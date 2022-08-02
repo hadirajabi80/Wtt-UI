@@ -3,7 +3,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'jalali-moment';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, throwError } from 'rxjs';
-import { FilterType, UserVacation } from 'src/app/Models/login';
+import { FilterStatusType, FilterType, UserVacation } from 'src/app/Models/login';
 import { UserVacationService } from 'src/app/Services/user-vacation.service';
 
 @Component({
@@ -23,6 +23,7 @@ export class VacationComponent implements OnInit {
   editStatus: boolean = false;
   userVacation;
   isConfirmed: boolean;
+  confirmedType = FilterStatusType.GETALL
   constructor(
     private modalService: NgbModal,
     public userVacationService: UserVacationService,
@@ -34,7 +35,8 @@ export class VacationComponent implements OnInit {
       '',
       this.pageNumber,
       this.pageSize,
-      this.dateType
+      this.dateType,
+      this.confirmedType
     );
   }
   open(content) {
@@ -93,7 +95,7 @@ export class VacationComponent implements OnInit {
             this.dateObject = moment(Date.now());
             this.editStatus = false;
             this.description = '';
-        });;
+        });
       }
     } else {
       this.userVacationService.add(this.description, this.date)
@@ -127,7 +129,7 @@ export class VacationComponent implements OnInit {
 
   filterDate(date) {
     this.dateType = date;
-    this.userVacationService.getAll('', 1, 10, date);
+    this.userVacationService.getAll('', 1, 10, date , this.confirmedType);
   }
   onChangeTable(e) {
     this.pageNumber = e;
@@ -143,5 +145,10 @@ export class VacationComponent implements OnInit {
     this.editStatus=false;
     this.dateObject=moment(Date.now());
     this.description='';
+  }
+  filterStatus(type)
+  {
+    this.confirmedType =type;
+    this.userVacationService.getAll('', this.pageNumber, this.pageSize, this.dateType , type);
   }
 }

@@ -10,3 +10,16 @@ import * as moment from "jalali-moment";
       return MomentDate.locale('fa').format('YYYY/M/D');
     }
   }
+
+  @Pipe({
+    name: 'time'
+  })
+  export class TimePipe implements PipeTransform {
+    transform(value: any, args?: any): any {
+      var hour = Math.floor(value/ 60);
+      var min = value % 60;
+      var time =
+        String(hour).padStart(2, '0') + ':' + String(min).padStart(2, '0');
+        return time;
+    }
+  }

@@ -1,9 +1,9 @@
 <div class="d-flex flex-row-reverse mt-3">
     <div class="col-12 position-relative">
-      <div *ngFor="let time of userLoginTimeService.times |paginate:{
+      <div *ngFor="let presence of userPresenceService.presence |paginate:{
         itemsPerPage:pageSize,
         currentPage:pageNumber,
-        totalItems:userLoginTimeService.rowsCount
+        totalItems:userPresenceService.rowsCount
       } let i = index">
       
         <div class="d-flex justify-content-between align-items-center border rounded p-3 mb-2">
@@ -12,23 +12,23 @@
           type="button"
           class="d-flex flex-column align-content-center align-items-center">
           <div class="mb-3 btn btn-info btn-sm">زمان ورود</div>
-          <div>{{ time.startTime * 1000 | date: "H:mm" }}</div>
+          <div>{{ presence.startTime * 1000 | date: "H:mm" }}</div>
       </div>
       <div
       type="button"
       class="d-flex flex-column align-content-center align-items-center">
       <div class="mb-3 btn btn-danger btn-sm">زمان خروج</div>
-      <div *ngIf="time.endTime == null">{{ time.endTime }}</div>
-      <div *ngIf="time.endTime != null">{{ time.endTime * 1000 | date: "H:mm" }}</div>
+      <div *ngIf="presence.endTime == null">{{ presence.endTime }}</div>
+      <div *ngIf="presence.endTime != null">{{ presence.endTime * 1000 | date: "H:mm" }}</div>
       </div>
       
       </div>
           <div>
-            {{time.date | jalali }}
+            {{presence.date | jalali }}
           </div>
           <div class="d-flex">      
-              <button class="btn btn-outline-secondary fa fa-edit me-1" (click)="onEdit(time)"></button>
-              <button class="btn btn-outline-secondary fa fa-trash" (click)="onDelete(time.id)"></button>
+              <button class="btn btn-outline-secondary fa fa-edit me-1" (click)="onEdit(presence)"></button>
+              <button class="btn btn-outline-secondary fa fa-trash" (click)="onDelete(presence.id)"></button>
           </div>
       </div>
       </div>

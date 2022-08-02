@@ -10,6 +10,12 @@ import { AdminComponent } from './Components/admin/admin.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ChildInfoComponent } from './Components/child-info/child-info.component';
+import { ChildStatusComponent } from './Components/child-status/child-status.component';
+import { TaskModule } from '../task/task.module';
+import { ChildTaskComponent } from './Components/child-task/child-task.component';
+import { ChildMissionComponent } from './Components/child-mission/child-mission.component';
+import { ChildVacationComponent } from './Components/child-vacation/child-vacation.component';
+import { ChildPresenceComponent } from './Components/child-presence/child-presence.component';
 
 
 @NgModule({
@@ -17,7 +23,14 @@ import { ChildInfoComponent } from './Components/child-info/child-info.component
     AdminAddUserComponent,
     AdminUserListComponent,
     AdminComponent,
-    ChildInfoComponent
+    ChildInfoComponent,
+    ChildStatusComponent,
+    ChildTaskComponent,
+    ChildMissionComponent,
+    ChildVacationComponent,
+    ChildPresenceComponent,
+
+
   ],
   imports: [
     CommonModule,
@@ -26,6 +39,7 @@ import { ChildInfoComponent } from './Components/child-info/child-info.component
     SharedModule,
     NgxPaginationModule,
     NgbModule,
+    TaskModule,
   ]
 })
 export class AdminModule { }

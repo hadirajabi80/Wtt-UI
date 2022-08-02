@@ -36,8 +36,8 @@
           <div class="d-flex">      
               <button class="btn btn-outline-secondary fa fa-edit me-1" (click)="onEdit(user)"></button>
               <button class="btn btn-outline-secondary fa fa-trash me-1" (click)="onDelete(user.id)"></button>
-              <button class="btn btn-outline-secondary fa fa-user me-1 " (click)="onUser(user.id,content)"></button>
-              <button class="btn btn-outline-secondary fa fa-info me-1 " [routerLink]="['userId']" (click)="onUserInfo(user.id)"></button>
+              <button class="btn btn-outline-secondary fa fa-user me-1" (click)="onUser(user.id,content)"></button>
+              <button class="btn btn-outline-secondary fa fa-info me-1" [routerLink]="['userInfo',user.id]"></button>
               <button  class="btn btn-outline-secondary" 
               [class.btn-outline-success]="user.isActive" [class.btn-outline-warning]="!user.isActive" (click)="onActive(user.id)">
               {{ user.isActive ? "فعال" : "غیر فعال" }}
@@ -45,7 +45,6 @@
           </div>
       </div>
     </div>
-
       </div>
     <pagination-controls
       class="d-flex justify-content-center me-5"
@@ -56,7 +55,6 @@
       </pagination-controls>
     </div>
   </div>
-
   <ng-template #content let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">اطلاعات کاربر</h4>
