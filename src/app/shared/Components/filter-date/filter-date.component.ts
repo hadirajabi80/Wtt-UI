@@ -1,3 +1,4 @@
+import { style } from '@angular/animations';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'jalali-moment';

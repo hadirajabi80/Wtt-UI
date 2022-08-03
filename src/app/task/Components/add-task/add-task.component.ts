@@ -30,6 +30,7 @@ export class AddTaskComponent implements OnInit , OnChanges {
   confirmedType = FilterStatusType.GETALL
   taskLocation =FilterTaskLocation.GETALL;
   showHome:boolean =false;
+  projectId;
   @Input() editTask;
   @ViewChild('content') content;
 
@@ -214,5 +215,9 @@ export class AddTaskComponent implements OnInit , OnChanges {
     {
       this.taskService.getAll('',1,10, this.dateType , this.confirmedType,FilterTaskLocation.GETALL)
     }
+  }
+  filterProject(projectId)
+  {
+    this.taskService.getAll('',1,10, this.dateType , this.confirmedType,this.taskLocation , projectId)
   }
 }

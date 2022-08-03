@@ -15,6 +15,7 @@ export class ChildInfoComponent implements OnInit {
   type:number=0;
   confirmedType = FilterStatusType.GETALL;
   showHome:boolean =false;
+  projectId;
   constructor(
     public dashboardService : DashboardService,
     private route : ActivatedRoute
@@ -41,5 +42,8 @@ export class ChildInfoComponent implements OnInit {
       this.showHome=false;      
     }
   } 
-
+  filterProject(projectId)
+  {
+    this.projectId=projectId;
+  }
 }

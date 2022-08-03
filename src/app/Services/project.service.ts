@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Project } from '../Models/login';
+import { Project, ProjectList } from '../Models/login';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,8 @@ export class ProjectService {
   readonly projectUrl = 'https://localhost:7263/api/Projects';
 
   project:Project[];
+  rowsCount:number;
+
   constructor(private http: HttpClient , private router:Router) { }
   getProjects() {
     let token = localStorage.getItem('token');
@@ -23,9 +25,10 @@ export class ProjectService {
     } 
     const headers = new HttpHeaders().set('Authorization','bearer ' + token);  
 
-    return this.http.get<Project[]>(this.projectUrl, {headers: headers})
+    return this.http.get<ProjectList>(this.projectUrl, {headers: headers})
     .subscribe((res) => {            
-      this.project = res;
+      this.project = res.projects;
+      this.rowsCount = res.rows;
     });
   }
 }

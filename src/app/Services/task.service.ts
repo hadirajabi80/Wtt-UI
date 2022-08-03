@@ -17,7 +17,7 @@ export class TaskService {
 
   constructor(private http: HttpClient , private router:Router) { }
 
-  getAll(searchKey? , pageNumber?, pageSize? , date? , confirmedType? ,locationType?) {
+  getAll(searchKey? , pageNumber?, pageSize? , date? , confirmedType? ,locationType? , projectId?) {
     let token = localStorage.getItem('token');
     const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
     let exp= parseInt(expiry);    
@@ -34,7 +34,8 @@ export class TaskService {
         startDate:date.startDate,
         endDate:date.endDate,
         confirmedType : confirmedType,
-        locationType : locationType
+        locationType : locationType,
+        projectId :projectId
       };
     
     for(let prop of Object.keys(myObject)){
@@ -77,7 +78,7 @@ export class TaskService {
     return this.http
       .put(this.taskUrl + '/' + taskObj.id, taskObj ,  {headers: headers});
   }
-  getTaskByAdmin(searchKey? , pageNumber?, pageSize? , date? , userId? , confirmedType?,locationType? ) {
+  getTaskByAdmin(searchKey? , pageNumber?, pageSize? , date? , userId? , confirmedType?,locationType?,projectId? ) {
     let token = localStorage.getItem('token');
     const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
     let exp= parseInt(expiry);    
@@ -95,7 +96,8 @@ export class TaskService {
         endDate:date.endDate ,
         userId:userId,
         confirmedType :confirmedType,
-        locationType : locationType
+        locationType : locationType,
+        projectId :projectId
         };
     
     for(let prop of Object.keys(myObject)){

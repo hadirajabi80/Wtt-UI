@@ -7,6 +7,8 @@
 <div class="d-flex justify-content-between">
     <div class="col-4 d-flex flex-column"> 
 <div class="bg bg-white p-0 rounded">
+  <h6 class="mt-2 ms-4">فیلتر ها</h6>
+
     <app-filter-date (filterDate)="filterDate($event)"></app-filter-date>
     <div class="pb-3" *ngIf="type ==1">
       <button 
@@ -22,10 +24,10 @@
     </div>
   </div>
   <div class="mt-2 bg bg-white">
-    <button class="btn btn-outline-info btn-block" (click)="type=1"> وظایف انجام شده </button>
-    <button class="btn btn-outline-info btn-block" (click)="type=2 ; showHome=false"> مرخصی های ثبت شده  </button>
-    <button class="btn btn-outline-info btn-block" (click)="type=3 ; showHome=false"> ماموریت های ثبت شده </button>
-    <button class="btn btn-outline-info btn-block" (click)="type=4 ; showHome=false"> حضور های ثبت شده </button>
+    <button class="btn btn-block" [class.btn-info]="type==1" [class.btn-outline-info]="type!=1" (click)="type=1"> وظایف انجام شده </button>
+    <button class="btn btn-block" [class.btn-info]="type==2" [class.btn-outline-info]="type!=2" (click)="type=2 ; showHome=false"> مرخصی های ثبت شده  </button>
+    <button class="btn btn-block" [class.btn-info]="type==3" [class.btn-outline-info]="type!=3" (click)="type=3 ; showHome=false"> ماموریت های ثبت شده </button>
+    <button class="btn btn-block" [class.btn-info]="type==4" [class.btn-outline-info]="type!=4" (click)="type=4 ; showHome=false"> حضور های ثبت شده </button>
 
   </div>
 </div>

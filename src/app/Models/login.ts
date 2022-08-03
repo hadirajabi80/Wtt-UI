@@ -51,6 +51,9 @@ export class ResMission{
 export class ResVacation{
     constructor(public rows?:number , public userVacations?:UserVacation[]){}
 }
+export class ProjectList{
+    constructor(public rows?:number , public projects?:Project[]){}
+}
 export class UserTask{
     constructor(public id?:number,
         public userId?:number ,

@@ -1,0 +1,10 @@
+<h6 class="mt-2 ms-4">فیلتر ها</h6>
+
+<div class="btn btn-outline-light border-0 col-12 d-flex justify-content-between align-content-center align-items-center">
+    <i class="fa fa-calendar text-secondary me-2" style="font-size:20px ;"></i>
+<input class="form-control" type="text" name="example" list="exampleList" placeholder="انتخاب پروژه" [(ngModel)]="project">
+<datalist id="exampleList">
+    <option *ngFor="let project of projectService.project" [value]="project.name"></option>
+</datalist>
+<button class="btn" (click)="onSearch()"><i class="fa fa-search text-secondary"></i></button>
+</div>

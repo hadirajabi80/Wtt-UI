@@ -24,6 +24,7 @@ export class ChildStatusComponent implements OnInit,OnChanges {
   @Input()dateType:any = {type:FilterType.CURRENT_MONTH_TODAY};
   @Input()confirmedType = FilterStatusType.GETALL;
   @Input()showHome:boolean =false;
+  
   taskLocation =FilterTaskLocation.GETALL;
   
   constructor(public taskService:TaskService,
@@ -33,7 +34,7 @@ export class ChildStatusComponent implements OnInit,OnChanges {
     public userPresenceService :UserPresenceService
     ) { }
   ngOnChanges(changes: SimpleChanges): void {
-
+    
     if(this.type==1)
     {
       this.taskService.getTaskByAdmin(this.searchKey,this.pageNumber,this.pageSize,this.dateType,this.userId , this.confirmedType , this.taskLocation);      

@@ -9,7 +9,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FilterDateComponent } from './Components/filter-date/filter-date.component';
 import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 import { JalaliPipe, TimePipe } from '../Models/custom-pipe';
-import { FilterStatusComponent } from './filter-status/filter-status.component';
+import { FilterStatusComponent } from './Components/filter-status/filter-status.component';
+import { FilterProjectComponent } from './Components/filter-project/filter-project.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FilterStatusComponent } from './filter-status/filter-status.component';
     FilterDateComponent,
     JalaliPipe,
     TimePipe,
-    FilterStatusComponent
+    FilterStatusComponent,
+    FilterProjectComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,8 @@ import { FilterStatusComponent } from './filter-status/filter-status.component';
     FilterDateComponent,
     FilterStatusComponent,
     JalaliPipe,
-    TimePipe
+    TimePipe,
+    FilterProjectComponent
   ]
 })
 export class SharedModule { }

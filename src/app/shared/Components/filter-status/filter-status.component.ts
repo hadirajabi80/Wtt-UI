@@ -9,6 +9,7 @@ import { FilterStatusType } from 'src/app/Models/login';
 export class FilterStatusComponent implements OnInit {
 
   filterStatusType=FilterStatusType;
+  type = 'GETALL';
   @Output() filterStatus = new EventEmitter<any>();
   constructor() { }
 
@@ -16,6 +17,7 @@ export class FilterStatusComponent implements OnInit {
   }
   onFilterStatus(type)
   {
+    this.type=type;        
     this.filterStatus.emit(type)
   }
 }
