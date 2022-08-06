@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { TaskService } from 'src/app/Services/task.service';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-child-task',
@@ -13,7 +14,7 @@ export class ChildTaskComponent implements OnInit {
   type;
   showBtn:boolean=false;
 
-  constructor(public taskService : TaskService , private toastr:ToastrService) { }
+  constructor(public taskService : TaskService , private toastr:ToastrService , private userService:UserService) { }
   @Input()task;
 
   ngOnInit(): void {
@@ -28,7 +29,7 @@ export class ChildTaskComponent implements OnInit {
   onChangeType()
   {
     let index = this.taskService.userTaskAdmin.findIndex((m) => m.id == this.task.id);
-    let status= {id: this.task.id, confirmType: this.type};
+    let status= {id: this.task.id, confirmType: this.type ,parentId :this.userService.userId };
     this.taskService.status(status)
     .subscribe((res) => {
         this.taskService.userTaskAdmin[index] = res;

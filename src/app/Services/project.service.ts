@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Project, ProjectList } from '../Models/login';
 
 @Injectable({
@@ -31,4 +32,19 @@ export class ProjectService {
       this.rowsCount = res.rows;
     });
   }
+  addProject(projectName): Observable<any>
+  {
+    let token = localStorage.getItem('token');
+    let projectObj = {name : projectName};
+    const headers = new HttpHeaders().set('Authorization','bearer ' + token);    
+    return this.http.post(this.projectUrl,projectObj, {headers:headers});
+  }
+  deleteProject(id)
+  {
+    let token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization','bearer ' + token);    
+    return this.http
+      .delete(this.projectUrl + '/' + id, {headers: headers});
+  }
 }
+

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { UserMissionService } from 'src/app/Services/user-mission.service';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-child-mission',
@@ -15,7 +16,7 @@ export class ChildMissionComponent implements OnInit {
 
   @Input() userMissions;
 
-  constructor(public userMissionService:UserMissionService , private toastr:ToastrService) { }
+  constructor(public userMissionService:UserMissionService , private toastr:ToastrService , private userService:UserService) { }
 
   ngOnInit(): void {
     if(this.userMissions){
@@ -29,7 +30,7 @@ export class ChildMissionComponent implements OnInit {
   onChangeType()
   {
     let index = this.userMissionService.userMissionsAdmin.findIndex((m) => m.id == this.userMissions.id);
-    let status= {id: this.userMissions.id, confirmType: this.type};
+    let status= {id: this.userMissions.id, confirmType: this.type , parentId: this.userService.userId};
     this.userMissionService.status(status)
     .subscribe((res) => {
         this.userMissionService.userMissionsAdmin[index] = res;

@@ -15,6 +15,7 @@ export class UserService {
   roleId:number;
   parent;
   childs;
+  userId;
   readonly userUrl = 'https://localhost:7263/api/Users';
   readonly userParentUrl = 'https://localhost:7263/api/Users/UserParent';
   constructor(private http: HttpClient , private router:Router) {}
@@ -30,7 +31,8 @@ export class UserService {
       this.router.navigate(['/login'])
     }   
     let decoded = jwt_decode(token);
-    this.roleId = decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];    
+    this.roleId = decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+    this.userId = decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];    
     const headers = new HttpHeaders().set('Authorization','bearer ' + token);    
     const myObject: any = { searchKey: searchKey, pageNumber: pageNumber, pageSize: pageSize };
 

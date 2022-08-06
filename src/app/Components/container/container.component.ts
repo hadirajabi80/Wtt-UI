@@ -11,9 +11,12 @@ import { UserService } from 'src/app/Services/user.service';
 })
 export class ContainerComponent implements OnInit {
 
-  constructor(public userPresenceService: UserPresenceService, private router:Router, public userService:UserService) {}
+  constructor( private router:Router, public userService:UserService) {}
   ngOnInit(): void {
-    this.userService.getAll();
+    if(this.userService.roleId!=1)
+    {
+      this.userService.getAll();
+    }
   }
 
 

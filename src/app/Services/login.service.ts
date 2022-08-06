@@ -8,7 +8,6 @@ import { Login } from '../Models/login';
 export class LoginService {
 
   readonly rootURl = 'https://localhost:7263/api/Auth';
-  readonly userUrl = 'https://localhost:7263/api/Users';
   constructor(private http: HttpClient) {}
 
   login(userName, password) {

@@ -9,11 +9,11 @@
     *ngIf="userMissions.confirmType==0">
     در حال بررسی
     </div>
-    <div class="btn btn-sm me-5 btn-success"
+    <div [ngbPopover]="userMissions.reviewerName" triggers="mouseenter:mouseleave" popoverTitle="تایید شده توسط" class="btn btn-sm me-5 btn-danger" class="btn btn-sm me-5 btn-success"
     *ngIf="userMissions.confirmType==1">
     تایید شده
     </div>
-    <div class="btn btn-sm me-5 btn-danger"
+    <div [ngbPopover]="userMissions.reviewerName" triggers="mouseenter:mouseleave" popoverTitle="رد شده توسط" class="btn btn-sm me-5 btn-danger" class="btn btn-sm me-5 btn-danger"
     *ngIf="userMissions.confirmType==2">
     رد شده
     </div>

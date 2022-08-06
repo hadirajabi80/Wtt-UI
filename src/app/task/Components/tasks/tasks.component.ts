@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from 'src/app/Services/task.service';
 import { FilterStatusType, FilterTaskLocation, FilterType } from 'src/app/Models/login';
-import { TaskLocationService } from 'src/app/Services/task-location.service';
 import { ProjectService } from 'src/app/Services/project.service';
 
 @Component({
@@ -20,7 +19,6 @@ export class TasksComponent implements OnInit {
   confirmedType = FilterStatusType.GETALL;
   taskLocation =FilterTaskLocation.GETALL;
   constructor(public taskService:TaskService ,
-    public taskLocationService:TaskLocationService,
     public projectService:ProjectService
      ) { }
 

@@ -38,15 +38,6 @@ export class ChartsComponent implements OnInit {
   pieChartOptions: ChartOptions = {
     plugins: {
       datalabels: {
-        formatter: (value, ctx) => {
-          let sum = 0;
-          let dataArr: any[] = ctx.chart.data.datasets[0].data;
-          dataArr.map((data: number) => {
-            sum += data;
-          });
-          let percentage = ((value * 100) / sum).toFixed(2) + '%';
-          return percentage;
-        },
       },
     },
   };
@@ -59,10 +50,10 @@ export class ChartsComponent implements OnInit {
         text: 'زمان حضور و کار',
       },
     },
-  };
+}
   salesData: ChartData<'bar'> = {
     labels: this.dashboardService.resDashboard.barChart.labels,
-    datasets: this.dashboardService.resDashboard.barChart.datasets
+    datasets: this.dashboardService.resDashboard.barChart.datasets,
   };
   constructor(public dashboardService: DashboardService) {}
 

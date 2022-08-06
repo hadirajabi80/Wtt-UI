@@ -16,6 +16,7 @@ import { ChildTaskComponent } from './Components/child-task/child-task.component
 import { ChildMissionComponent } from './Components/child-mission/child-mission.component';
 import { ChildVacationComponent } from './Components/child-vacation/child-vacation.component';
 import { ChildPresenceComponent } from './Components/child-presence/child-presence.component';
+import { AdminAddProjectComponent } from './Components/admin-add-project/admin-add-project.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { ChildPresenceComponent } from './Components/child-presence/child-presen
     ChildMissionComponent,
     ChildVacationComponent,
     ChildPresenceComponent,
+    AdminAddProjectComponent,
 
 
   ],

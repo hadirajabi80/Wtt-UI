@@ -19,7 +19,6 @@ export class AdminUserListComponent implements OnInit {
   pageNumber: number = 1;
   pageSize: number = 10;
   searchKey: string = '';
-  @Output() editUser = new EventEmitter<any>();
   modalRef : NgbModalRef;
   parentId:number=0;
   childId:number=0;
@@ -27,6 +26,7 @@ export class AdminUserListComponent implements OnInit {
   parent;
   user;
   dateType :any = {type:FilterType.CURRENT_MONTH_TODAY};
+  @Output() editUser = new EventEmitter<any>();
 
   constructor(public userService:UserService,
     private modalService: NgbModal ,

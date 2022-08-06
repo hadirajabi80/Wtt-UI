@@ -66,7 +66,9 @@ export class UserTask{
         public searchKey?:string,
         public pageNumber?:number,
         public pageSize?:number,
-        public projectId?:number
+        public projectId?:number,
+        public userReviewer ?:number,
+        public reviewerName ?: string
         ){}
 }
 export class Tasks{
@@ -140,7 +142,9 @@ export class UserMission{
         public searchKey?:string,
         public pageNumber?:number,
         public pageSize?:number,
-        public type?: string
+        public type?: string,
+        public userReviewer ?:number,
+        public reviewerName ?: string
         ){}
 }
 export class UserAddVacation{
@@ -155,7 +159,9 @@ export class UserVacation{
         public searchKey?:string,
         public pageNumber?:number,
         public pageSize?:number,
-        public type?: string
+        public type?: string,
+        public userReviewer ?:number,
+        public reviewerName ?: string
         ){}
 }
 export class Dashboard{

@@ -57,7 +57,7 @@ export class UserVacationService {
 
     return this.http
       .get<ResVacation>(this.vacationUrl, options)
-      .subscribe((res) => {
+      .subscribe((res) => {        
         this.userVacations = res.userVacations;
         this.rowsCount = res.rows;
       });
@@ -135,3 +135,7 @@ export class UserVacationService {
       })
   }
 }
+function jwt_decode(token: string) {
+  throw new Error('Function not implemented.');
+}
+

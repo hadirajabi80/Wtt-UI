@@ -43,9 +43,8 @@ export class DashboardComponent implements OnInit {
           this.calcTime(res.startTime);
         }
       }
-
-      this.projectService.getProjects();
     });
+    this.projectService.getProjects();
     this.dashboardService.getAll(this.dateType);
     this.taskService.getAll(this.queryEmit.searchKey,this.queryEmit.pageNumber,this.queryEmit.pageSize ,this.dateType , this.confirmedType ,this.taskLocation);
 

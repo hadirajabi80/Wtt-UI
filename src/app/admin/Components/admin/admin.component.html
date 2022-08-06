@@ -2,6 +2,7 @@
 <div class="col-12 d-flex justify-content-between align-content-center align-content-lg-center">
   <div class="col-4">
     <app-admin-add-user [editUser]="editUser"></app-admin-add-user>
+    <app-admin-add-project *ngIf="userService.roleId==3"></app-admin-add-project>
   </div>
   <div class="col-8">
     <app-admin-user-list (editUser)="onEdit($event)" ></app-admin-user-list>
