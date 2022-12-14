@@ -41,21 +41,53 @@
           <button class="btn btn-info mt-3" (click)="onShow();modal.close()">نمایش</button>
         </div>
         <div class="col-8 d-flex flex-column">
-          <div class="d-flex">
-            <button class="btn btn-outline-secondary border-0 btn-block " [class.active]="filterName=='ماه مالی جاری تا امروز'"  (click)="onFilter(filterType.CURRENT_MONTH_TODAY ,'ماه مالی جاری تا امروز' );modal.close()">ماه مالی جاری تا امروز</button>
-            <button class="btn btn-outline-secondary border-0 btn-block"  [class.active]="filterName=='امروز'"  (click)="onFilter(filterType.TODAY, 'امروز');modal.close()">امروز</button>
+          <div class="d-flex mb-1">
+            <button class="btn border-0 btn-block " [class.active]="filterName=='ماه مالی جاری تا امروز'"
+                    (click)="onFilter(filterType.CURRENT_MONTH_TODAY ,'ماه مالی جاری تا امروز' );modal.close()">
+              <i class="fa fa-calendar"></i>
+              ماه مالی جاری تا امروز
+            </button>
+            <button class="btn border-0 btn-block" [class.active]="filterName=='امروز'"
+                    (click)="onFilter(filterType.TODAY, 'امروز');modal.close()">
+              <i class="fa fa-calendar"></i>
+              امروز
+            </button>
           </div>
-          <div class="d-flex">
-            <button class="btn btn-outline-secondary border-0 btn-block"  [class.active]="filterName=='ماه مالی جاری'"   (click)="onFilter(filterType.CURRENT_MONTH , 'ماه مالی جاری');modal.close()">ماه مالی جاری</button>
-            <button class="btn btn-outline-secondary border-0 btn-block"  [class.active]="filterName=='دیروز'"  (click)="onFilter(filterType.YESTERDAY, 'دیروز');modal.close()">دیروز</button>
+          <div class="d-flex mb-1">
+            <button class="btn border-0 btn-block" [class.active]="filterName=='ماه مالی جاری'"
+                    (click)="onFilter(filterType.CURRENT_MONTH , 'ماه مالی جاری');modal.close()">
+              <i class="fa fa-calendar"></i>
+              ماه مالی جاری
+            </button>
+            <button class="btn border-0 btn-block" [class.active]="filterName=='دیروز'"
+                    (click)="onFilter(filterType.YESTERDAY, 'دیروز');modal.close()">
+              <i class="fa fa-calendar"></i>
+              دیروز
+            </button>
           </div>
-          <div class="d-flex">
-            <button class="btn btn-outline-secondary border-0 btn-block"  [class.active]="filterName=='ماه مالی گذشته'"  (click)="onFilter(filterType.PASSED_MONTH, 'ماه مالی گذشته' );modal.close()">ماه مالی گذشته</button>
-            <button class="btn btn-outline-secondary border-0 btn-block"  [class.active]="filterName=='هفته جاری'"  (click)="onFilter(filterType.CURRENT_WEEK, 'هفته جاری');modal.close()">هفته جاری</button>
+          <div class="d-flex mb-1">
+            <button class="btn border-0 btn-block" [class.active]="filterName=='ماه مالی گذشته'"
+                    (click)="onFilter(filterType.PASSED_MONTH, 'ماه مالی گذشته' );modal.close()">
+              <i class="fa fa-calendar"></i>
+              ماه مالی گذشته
+            </button>
+            <button class="btn border-0 btn-block" [class.active]="filterName=='هفته جاری'"
+                    (click)="onFilter(filterType.CURRENT_WEEK, 'هفته جاری');modal.close()">
+              <i class="fa fa-calendar"></i>
+              هفته جاری
+            </button>
           </div>
-          <div class="d-flex">
-            <button class="btn btn-outline-secondary border-0 btn-block"  [class.active]="filterName=='سال جاری'"  (click)="onFilter(filterType.CURRENT_YEAR, 'سال جاری');modal.close()" >سال جاری</button>
-            <button class="btn btn-outline-secondary border-0 btn-block"  [class.active]="filterName=='هفته گذشته'"  (click)="onFilter(filterType.PASSED_WEEK, 'هفته گذشته');modal.close()">هفته گذشته</button>
+          <div class="d-flex mb-1">
+            <button class="btn border-0 btn-block" [class.active]="filterName=='سال جاری'"
+                    (click)="onFilter(filterType.CURRENT_YEAR, 'سال جاری');modal.close()">
+              <i class="fa fa-calendar"></i>
+              سال جاری
+            </button>
+            <button class="btn border-0 btn-block" [class.active]="filterName=='هفته گذشته'"
+                    (click)="onFilter(filterType.PASSED_WEEK, 'هفته گذشته');modal.close()">
+              <i class="fa fa-calendar"></i>
+              هفته گذشته
+            </button>
           </div>
         </div>
       </div>
@@ -65,17 +97,19 @@
 <div
   class="col-12 p-0 pb-5 px-4 d-flex flex-column align-content-center justify-content-center"
 >
-    <div class="btn btn btn-outline-light border-0 d-flex justify-content-between align-content-center align-items-center  mt-3 w-100" (click)="open(content)">
-      <div>
-  <button
-    class=" btn col-12 d-flex align-items-center p-0"
-    
-  >
-    <i class="fa fa-calendar pe-2 text-secondary" style="font-size:20px ;"> </i> بازه زمانی
-  </button>
-</div>
-  <div class="btn btn-info btn-sm">
-    {{filterName}}
+  <div
+    class="btn btn btn-outline-light border-0 d-flex justify-content-between align-content-center align-items-center  mt-3 w-100"
+    (click)="open(content)">
+    <div>
+      <button
+        class=" btn col-12 d-flex align-items-center p-0"
+
+      >
+        <i class="fa fa-calendar pe-2 text-secondary" style="font-size:20px ;"> </i> بازه زمانی
+      </button>
+    </div>
+    <div class="btn date-btn btn-sm">
+      {{filterName}}
+    </div>
   </div>
-</div>
 </div>

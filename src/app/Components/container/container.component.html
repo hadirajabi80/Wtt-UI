@@ -20,7 +20,7 @@
 
         <div class="py-3 mr-2 d-flex justify-content-center ">
           <img
-          
+
             src="/assets/logo.png"
             alt=""
             width="90px"
@@ -28,13 +28,13 @@
           />
         </div>
         <ul class="flex-column px-3">
-          <li class="btn btn-outline-secondary btn-sm border-0 d-flex align-items-center"
+          <li class="btn btn-sm border-0 d-flex align-items-center"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }">
             <span class="fa fa-dashboard"></span>
             <a
               href="#"
-              class="nav-link my-1 text-dark w-100 text-right "
+              class="nav-link my-1 w-100 text-right "
               [routerLink]="['/dashboard']"
 
               >داشبورد</a
@@ -72,43 +72,43 @@
                             </ul>
                         </div>
                     </li> -->
-          <li class="btn btn-outline-secondary border-0 btn-sm d-flex align-items-center"
+          <li class="btn border-0 btn-sm d-flex align-items-center"
           routerLinkActive="active">
             <span class="fa fa-user"></span>
             <a
               href="#"
-              class="nav-link my-1 text-dark w-100 text-right"
+              class="nav-link my-1 w-100 text-right"
               [routerLink]="['/presence']"
 
               >حضور</a
             >
           </li>
-          <li class="btn btn-outline-secondary btn-sm border-0 d-flex align-items-center"routerLinkActive="active"
+          <li class="btn btn-sm border-0 d-flex align-items-center"routerLinkActive="active"
           >
             <span class="fa fa-tasks"></span>
             <a
               href="#"
-              class="nav-link my-1 text-dark w-100 text-right"
+              class="nav-link my-1 w-100 text-right"
               [routerLink]="['/task']"
               >وظایف</a
             >
           </li>
-          <li class="btn btn-outline-secondary btn-sm border-0 d-flex align-items-center"
+          <li class="btn btn-sm border-0 d-flex align-items-center"
           routerLinkActive="active"
           >
             <span class="fa fa-suitcase"></span>
-            <a href="#" 
-            class="nav-link my-1 text-dark w-100 text-right"
+            <a href="#"
+            class="nav-link my-1 w-100 text-right"
             [routerLink]="['/mission']"
               >ماموریت</a
             >
           </li>
-          <li class="btn btn-outline-secondary btn-sm border-0 d-flex align-items-center"
+          <li class="btn btn-sm border-0 d-flex align-items-center"
           routerLinkActive="active"
           >
             <span class="fa fa-bed"></span>
-            <a href="#" 
-            class="nav-link my-1 text-dark w-100 text-right"
+            <a href="#"
+            class="nav-link my-1 w-100 text-right"
             [routerLink]="['/vacation']"
               >مرخصی</a
             >
@@ -125,11 +125,11 @@
               >پروژه ها</a
             >
           </li> -->
-          <li class="btn btn-outline-secondary btn-sm border-0 d-flex align-items-center"
+          <li class="btn btn-sm border-0 d-flex align-items-center"
           routerLinkActive="active"
           >
             <span class="fa fa-file"></span>
-            <a href="#" class="nav-link my-1 text-dark w-100 text-right"
+            <a href="#" class="nav-link my-1 w-100 text-right"
             [routerLink]="['/report']"
               >گزارش ها</a
             >
@@ -140,11 +140,11 @@
               >مدیریت ناهار</a
             >
           </li> -->
-          <li *ngIf="userService.roleId!= 1" class="btn btn-outline-secondary btn-sm border-0 d-flex align-items-center"
+          <li *ngIf="userService.roleId!= 1" class="btn btn-sm border-0 d-flex align-items-center"
           routerLinkActive="active"
           >
             <span class="fa fa-star"></span>
-            <a href="#" class="nav-link my-1 text-dark w-100 text-right"
+            <a href="#" class="nav-link my-1 w-100 text-right"
             [routerLink]="['/admin']"
               >بخش ادمین</a
             >

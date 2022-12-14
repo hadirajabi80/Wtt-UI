@@ -12,7 +12,7 @@
       <div class="mb-3">
         <label class="mt-3" >عنوان ماموریت:</label>
         <div>
-          <input type="text" 
+          <input type="text"
           class="form-control"
           placeholder="عنوان ماموریت"
           [(ngModel)]="title"
@@ -41,7 +41,7 @@
           </div>
           <label class="mt-3" >محل ماموریت:</label>
           <div>
-            <input type="text" 
+            <input type="text"
             class="form-control"
             placeholder="محل ماموریت"
             [(ngModel)]="location"
@@ -50,7 +50,7 @@
           </div>
           <label class="mt-3" >تشریح ماموریت:</label>
           <div>
-            <textarea type="textarea" 
+            <textarea type="textarea"
             class="form-control"
             placeholder="تشریح ماموریت"
             [(ngModel)]="description"
@@ -75,7 +75,7 @@
     <div class="col-4">
       <div class="col-12 p-0">
         <button
-          class="btn btn-info col-12 mt-3 d-flex justify-content-center align-items-center"
+          class="btn btn-add col-12 mt-3 d-flex justify-content-center align-items-center"
           (click)="open(content)">
           <i class="fa fa-plus"></i> افزودن ماموریت
         </button>
@@ -93,7 +93,7 @@
     <div *ngFor="let userMissions of userMissionService.userMissions | paginate:{
       itemsPerPage:pageSize,
       currentPage:pageNumber,
-      totalItems:userMissionService.rowsCount}">
+      totalItems:userMissionService.rowsCount}">فه
       <app-mission-list [userMissions]="userMissions" (editMission)="onEdit($event , content)"></app-mission-list>
     </div>
     <pagination-controls

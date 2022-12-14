@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
     public taskService:TaskService,
     public projectService:ProjectService
   ) {}
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.userPresenceService.getUserLastStatus().subscribe((res) => {
       this.lastState = res;
       this.isStarted = this.lastState && this.lastState.endTime == null;
@@ -69,9 +69,9 @@ export class DashboardComponent implements OnInit {
     }
   }
   filterDate(date) {
-    this.dateType = date;    
+    this.dateType = date;
     this.dashboardService.getAll(this.dateType);
-                    
+
   }
   calcTime(startTime: number) {
     this.elapsedTime(startTime);
@@ -92,7 +92,7 @@ export class DashboardComponent implements OnInit {
   {
     this.queryEmit=e;
     this.queryEmit.pageNumber=1;
-    this.taskService.getAll(this.queryEmit.searchKey,this.queryEmit.pageNumber,this.queryEmit.pageSize ,this.dateType ,this.confirmedType, this.taskLocation);    
+    this.taskService.getAll(this.queryEmit.searchKey,this.queryEmit.pageNumber,this.queryEmit.pageSize ,this.dateType ,this.confirmedType, this.taskLocation);
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from 'src/app/Services/dashboard.service';
+import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-user-info',
@@ -12,5 +13,5 @@ export class UserInfoComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  form :FormGroup
 }

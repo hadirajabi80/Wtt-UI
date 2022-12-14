@@ -1,0 +1,29 @@
+.btn-block{
+  text-align: right;
+}
+.fa-calendar{
+  color: #d0d0d6;
+}
+.active{
+  background-color: #f3f6f9;
+  color: #1bc5bd!important;
+  .fa-calendar{
+    color: #1bc5bd;
+  }
+}
+.modal-header{
+  border-bottom : 0;
+}
+::ng-deep .modal-content{
+  width: 728px!important;
+}
+button{
+  font-size: 14px;
+  font-weight: 400;
+}
+.date-btn{
+  background-color: #1bc5bd;
+  color: white;
+  font-size: 14px;
+  font-weight: 400;
+}
